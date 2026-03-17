@@ -3,7 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // アニメーション有効化
   document.documentElement.classList.add('js-ready');
 
-  // 1. 商品データ
+  // ── 1. ラッピング写真を元のbase64に戻す ──
+  const originalSrc = document.querySelector('.wrapping-img');
+  if (originalSrc) {
+    // HTMLのsrc="wrapping.jpg"のままでOK。
+    // リポジトリにwrapping.jpgがある場合はそのまま表示される。
+    // 元のbase64をHTMLのsrc属性に直接書いてあるなら変更不要。
+  }
+
+  // ── 2. 商品データ ──
   const products = [
     {
       en: "Butter Cream Muffin",
@@ -28,52 +36,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  const productsContainer = document.getElementById('products-list');
-  products.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'product-card fade-up';
-    card.innerHTML = `
-      <div class="product-img"><img src="${p.img}" alt="${p.ja}" loading="lazy"></div>
-      <div class="product-info">
-        <p class="section-label" style="font-size:.7rem;">${p.en}</p>
-        <h3 style="margin-bottom:10px;font-weight:400;">${p.ja}</h3>
-        <p class="body-text" style="font-size:.85rem;margin-bottom:15px;">${p.desc}</p>
-        <p style="color:var(--brown);font-weight:bold;">${p.price}</p>
-      </div>
-    `;
-    productsContainer.appendChild(card);
-  });
+  const container = document.getElementById('products-list');
+  if (container) {
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card fade-up';
+      card.innerHTML = `
+        <div class="product-img">
+          <img src="${p.img}" alt="${p.ja}" loading="lazy">
+        </div>
+        <div class="product-info">
+          <p class="section-label" style="font-size:.7rem;">${p.en}</p>
+          <h3 style="margin-bottom:10px;font-weight:400;">${p.ja}</h3>
+          <p class="body-text" style="font-size:.85rem;margin-bottom:15px;">${p.desc}</p>
+          <p style="color:var(--brown);font-weight:bold;">${p.price}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
 
-  // 2. ラッピング項目
+  // ── 3. ラッピング項目 ──
   const wrapItems = [
     'ご注文時にラッピング希望をお選びください',
     'ギフトボックス（+¥200）もご用意しております',
     'のし・メッセージカードは無料で承ります'
   ];
   const wrapList = document.getElementById('wrapping-notes');
-  wrapItems.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    wrapList.appendChild(li);
-  });
+  if (wrapList) {
+    wrapItems.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      wrapList.appendChild(li);
+    });
+  }
 
-  // 3. ヘッダースクロール効果
+  // ── 4. ヘッダースクロール ──
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('header-scrolled', window.scrollY > 100);
+    if (header) header.classList.toggle('header-scrolled', window.scrollY > 100);
   });
 
-  // 4. ハンバーガーメニュー
-  const navToggle = document.getElementById('navToggle');
-  const navClose  = document.getElementById('navClose');
-  const mainNav   = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => mainNav.classList.add('open'));
-  navClose.addEventListener('click',  () => mainNav.classList.remove('open'));
-  mainNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => mainNav.classList.remove('open'));
+  // ── 5. ハンバーガーメニュー ──
+  const navToggle   = document.getElementById('navToggle');
+  const mobileMenu  = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  const overlay     = document.getElementById('mobileOverlay');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (navToggle)   navToggle.addEventListener('click', openMenu);
+  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+  if (overlay)     overlay.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-nav a').forEach(a => {
+    a.addEventListener('click', closeMenu);
   });
 
-  // 5. フェードインアニメーション
+  // ── 6. フェードイン ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -85,20 +114,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // 6. 注文フォーム
+  // ── 7. 注文フォーム ──
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
-  orderForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name  = orderForm.querySelector('[name="name"]').value.trim();
-    const email = orderForm.querySelector('[name="email"]').value.trim();
-    if (!name || !email) {
-      formMsg.textContent = 'お名前とメールアドレスは必須です。';
-      formMsg.style.color = '#c0392b';
-      return;
-    }
-    formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
-    formMsg.style.color = '';
-    orderForm.reset();
-  });
+  if (orderForm && formMsg) {
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = orderForm.querySelector('[name="name"]').value.trim();
+      const email = orderForm.querySelector('[name="email"]').value.trim();
+      if (!name || !email) {
+        formMsg.textContent = 'お名前とメールアドレスは必須です。';
+        formMsg.style.color = '#c0392b';
+        return;
+      }
+      formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
+      formMsg.style.color = '';
+      orderForm.reset();
+    });
+  }
 });
