@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── JS読み込み確認後にアニメーションを有効化 ── */
+  document.documentElement.classList.add('js-ready');
+
   /* ── 1. 商品データ ── */
   const products = [
     {
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── 3. ハンバーガーメニュー（CSSは .nav.open を使用） ── */
+  /* ── 3. ハンバーガーメニュー ── */
   const navToggle = document.getElementById('navToggle');
   const navClose  = document.getElementById('navClose');
   const mainNav   = document.getElementById('mainNav');
@@ -78,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── 4. フェードイン（CSSは .fade-up.visible を使用） ── */
+  /* ── 4. フェードイン ── */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -88,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  // すべての .fade-up を監視（商品カード追加後なのでDOMに存在する）
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   /* ── 5. 注文フォーム ── */
