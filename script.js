@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. 商品データの生成
+  /* ── 1. 商品データ ── */
   const products = [
     {
       en: 'Butter Cream Muffin',
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. ヘッダーのスクロール演出
+  /* ── 2. ヘッダー スクロール ── */
   const header = document.getElementById('siteHeader');
   if (header) {
     window.addEventListener('scroll', () => {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. ハンバーガーメニュー（CSS は .open クラスを使用）
+  /* ── 3. ハンバーガーメニュー（CSSは .nav.open を使用） ── */
   const navToggle = document.getElementById('navToggle');
   const navClose  = document.getElementById('navClose');
   const mainNav   = document.getElementById('mainNav');
@@ -78,18 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. フェードインアニメーション（CSS は .visible クラスを使用）
+  /* ── 4. フェードイン（CSSは .fade-up.visible を使用） ── */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
+  // すべての .fade-up を監視（商品カード追加後なのでDOMに存在する）
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // 5. 注文フォームの送信処理
+  /* ── 5. 注文フォーム ── */
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
 
