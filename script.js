@@ -1,56 +1,111 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. 商品データの生成
-    const products = [
-        { name: "バタークリームマフィン", price: "¥450", img: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&q=80&w=400" },
-        { name: "チョコレートマドレーヌ", price: "¥380", img: "https://images.unsplash.com/photo-1574085448211-321a9d5620ca?auto=format&fit=crop&q=80&w=400" },
-        { name: "くまのマドレーヌ", price: "¥420", img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=400" },
-        { name: "季節のクッキー缶", price: "¥2,400", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=400" }
-    ];
 
-    const grid = document.getElementById('productsGrid');
+  // 1. 商品データの生成
+  const products = [
+    {
+      en: 'Butter Cream Muffin',
+      name: 'バタークリームマフィン',
+      desc: 'しっとりとしたバタークリームをたっぷり使ったマフィン。',
+      price: '¥450',
+      img: 'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&q=80&w=400'
+    },
+    {
+      en: 'Chocolate Madeleine',
+      name: 'チョコレートマドレーヌ',
+      desc: '濃厚なチョコレートを使った贅沢なマドレーヌ。',
+      price: '¥380',
+      img: 'https://images.unsplash.com/photo-1574085448211-321a9d5620ca?auto=format&fit=crop&q=80&w=400'
+    },
+    {
+      en: 'Bear Madeleine',
+      name: 'くまのマドレーヌ',
+      desc: 'くま型の可愛らしいマドレーヌ。贈り物にも人気です。',
+      price: '¥420',
+      img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=400'
+    },
+    {
+      en: 'Seasonal Cookie Tin',
+      name: '季節のクッキー缶',
+      desc: '季節の素材を使ったクッキーを詰め合わせた特製缶。',
+      price: '¥2,400',
+      img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=400'
+    }
+  ];
+
+  const grid = document.getElementById('productsGrid');
+  if (grid) {
     products.forEach(p => {
-        const item = document.createElement('div');
-        item.className = 'product-card fade-up';
-        item.innerHTML = `
-            <img src="${p.img}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <p>${p.price}</p>
-        `;
-        grid.appendChild(item);
+      const card = document.createElement('div');
+      card.className = 'product-card fade-up';
+      card.innerHTML = `
+        <div class="product-img-wrap">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+        </div>
+        <div class="product-body">
+          <p class="product-en">${p.en}</p>
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-desc">${p.desc}</p>
+          <p class="product-price">${p.price}</p>
+          <a href="#order" class="btn-order">注文する</a>
+        </div>
+      `;
+      grid.appendChild(card);
     });
+  }
 
-    // 2. ヘッダーのスクロール演出
-    const header = document.getElementById('siteHeader');
+  // 2. ヘッダーのスクロール演出
+  const header = document.getElementById('siteHeader');
+  if (header) {
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+      header.classList.toggle('scrolled', window.scrollY > 60);
     });
+  }
 
-    // 3. ハンバーガーメニュー
-    const navToggle = document.getElementById('navToggle');
-    const navClose = document.getElementById('navClose');
-    const mainNav = document.getElementById('mainNav');
+  // 3. ハンバーガーメニュー（CSS は .open クラスを使用）
+  const navToggle = document.getElementById('navToggle');
+  const navClose  = document.getElementById('navClose');
+  const mainNav   = document.getElementById('mainNav');
 
-    navToggle.addEventListener('click', () => mainNav.classList.add('active'));
-    navClose.addEventListener('click', () => mainNav.classList.remove('active'));
-    
-    // メニューリンククリック時に閉じる
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => mainNav.classList.add('open'));
+  }
+  if (navClose && mainNav) {
+    navClose.addEventListener('click', () => mainNav.classList.remove('open'));
+  }
+  if (mainNav) {
     mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => mainNav.classList.remove('active'));
+      link.addEventListener('click', () => mainNav.classList.remove('open'));
     });
+  }
 
-    // 4. フェードインアニメーション（Intersection Observer）
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, { threshold: 0.1 });
+  // 4. フェードインアニメーション（CSS は .visible クラスを使用）
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // 5. 注文フォームの送信処理
+  const orderForm = document.getElementById('orderForm');
+  const formMsg   = document.getElementById('formMsg');
+
+  if (orderForm && formMsg) {
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = orderForm.querySelector('[name="name"]').value.trim();
+      const email = orderForm.querySelector('[name="email"]').value.trim();
+      if (!name || !email) {
+        formMsg.textContent = 'お名前とメールアドレスは必須です。';
+        formMsg.style.color = '#c0392b';
+        return;
+      }
+      formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
+      formMsg.style.color = '';
+      orderForm.reset();
+    });
+  }
 });
