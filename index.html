@@ -18,7 +18,6 @@
         <span class="logo-ja">コトリ洋菓子店</span>
       </div>
       <nav class="nav" id="mainNav">
-        <button class="nav-close" id="navClose" aria-label="メニューを閉じる">✕</button>
         <a href="#concept">コンセプト</a>
         <a href="#products">商品一覧</a>
         <a href="#wrapping">ラッピング</a>
@@ -28,6 +27,19 @@
       <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">☰</button>
     </div>
   </header>
+
+  <!-- モバイルメニューオーバーレイ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">✕</button>
+    <nav class="mobile-nav">
+      <a href="#concept">コンセプト</a>
+      <a href="#products">商品一覧</a>
+      <a href="#wrapping">ラッピング</a>
+      <a href="#info">店舗情報</a>
+      <a href="#order">ご注文</a>
+    </nav>
+  </div>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -80,7 +92,7 @@
         <ul class="wrapping-notes" id="wrapping-notes"></ul>
       </div>
       <div class="wrapping-img-wrap">
-        <img src="flower.jpg" alt="コトリオリジナル包装紙" class="wrapping-img" />
+        <img src="wrapping.jpg" alt="コトリオリジナル包装紙" class="wrapping-img" id="wrappingImg" />
         <span class="wrapping-caption">コトリオリジナル包装紙</span>
       </div>
     </div>
