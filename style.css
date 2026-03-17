@@ -249,3 +249,23 @@ img{display:block;width:100%;object-fit:cover;}
     gap: 2rem;
   }
 }
+
+/* 商品一覧のヘッダーを中央寄せ */
+.products-header {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+/* フッター全体を中央寄せ */
+.site-footer {
+  width: 100%;
+  background-color: var(--dark);
+  padding: 5rem 1.25rem;
+  text-align: center; /* これで中の文字が中央になります */
+}
+
+.footer-logo, .footer-copy {
+  display: block;
+  text-align: center;
+}
