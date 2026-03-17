@@ -170,3 +170,48 @@ img{display:block;width:100%;object-fit:cover;}
   height: 200px;
   object-fit: cover;
 }
+
+/* --- アニメーションと商品グリッドの最終調整 --- */
+
+/* 1. アニメーション：JSから付与されるクラスを統一 */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* どちらのクラス名が来ても表示されるように設定 */
+.fade-up.is-visible,
+.fade-up.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* 2. 商品グリッド：カードが綺麗に並ぶように調整 */
+.products-grid {
+  display: grid;
+  /* 画面幅に合わせて自動で列数を調整 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 3. カード内の画像サイズ固定（崩れ防止） */
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-img-wrap {
+  width: 100%;
+  height: 220px; /* 高さを固定 */
+  overflow: hidden;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
