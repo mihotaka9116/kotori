@@ -1,109 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kotori – コトリ洋菓子店 | 小さな幸せを、ひとつひとつ丁寧に。</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コトリ洋菓子店 | Kotori Patisserie</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header class="site-header" id="siteHeader">
-    <div class="header-inner">
-      <div class="logo">
-        <span class="logo-en">Kotori</span>
-        <span class="logo-ja">コトリ洋菓子店</span>
-      </div>
-      
-      <nav class="nav" id="mainNav">
-        <button class="nav-close" id="navClose" aria-label="メニューを閉じる">✕</button>
-        <div class="nav-links">
-          <a href="#concept">コンセプト</a>
-          <a href="#products">商品一覧</a>
-          <a href="#wrapping">ラッピング</a>
-          <a href="#info">店舗情報</a>
-          <a href="#order" class="nav-cta">ご注文</a>
+    <!-- ヘッダー -->
+    <header id="header" class="site-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-en">Kotori</span>
+                <span class="logo-ja">コトリ洋菓子店</span>
+            </div>
+            <nav class="nav">
+                <a href="#concept">コンセプト</a>
+                <a href="#products">商品一覧</a>
+                <a href="#order">ご注文</a>
+            </nav>
         </div>
-      </nav>
-      
-      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+    </header>
 
-  <main>
+    <!-- ヒーローセクション -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <p class="hero-sub fade-up">小さな幸せを、ひとつひとつ丁寧に。</p>
-        <h1 class="hero-title fade-up">Kotori<br><span>コトリ洋菓子店</span></h1>
-        <a href="#products" class="btn-hero fade-up">商品を見る</a>
-      </div>
-      <div class="hero-scroll">scroll</div>
+        <div class="hero-content">
+            <p class="hero-sub">小さな幸せを、ひとつひとつ丁寧に。</p>
+            <h1 class="hero-title">Kotori<br><span>コトリ洋菓子店</span></h1>
+            <a href="#products" class="btn-hero">商品を見る</a>
+        </div>
     </section>
 
-    <section id="concept" class="concept section-padding">
-      <div class="container concept-inner">
-        <div class="concept-text js-reveal">
-          <p class="section-label">— About Kotori —</p>
-          <h2>小鳥が運ぶ<br>やさしい甘さ</h2>
-          <p class="body-text">
-            コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br>
-            バターの香り、しっとりとした生地、ひとくちの幸せ。<br>
-            大切な人への贈り物に、自分へのご褒美に、どうぞ。
-          </p>
+    <!-- 商品一覧 -->
+    <section id="products" class="products">
+        <h2 class="section-title">商品一覧</h2>
+        <div class="products-grid">
+            <!-- カード1 -->
+            <div class="product-card fade-up">
+                <img src="muffin.jpg" alt="マフィン">
+                <div class="product-body">
+                    <h3>バタークリームマフィン</h3>
+                    <p>口どけの良いバタークリームを贅沢に使用しました。</p>
+                    <span class="price">¥450</span>
+                </div>
+            </div>
+            <!-- 他の商品も同様に続く -->
         </div>
-        <div class="concept-deco js-reveal">
-          <div class="deco-circle"></div>
-          <div class="deco-ring"></div>
-          <span class="deco-text">since 2020</span>
-        </div>
-      </div>
     </section>
 
-    <section id="products" class="products section-padding bg-light">
-      <div class="container">
-        <div class="section-header js-reveal">
-          <p class="section-label">— Our Products —</p>
-          <h2>商品一覧</h2>
-        </div>
-        <div class="products-grid" id="productsGrid">
-          </div>
-      </div>
-    </section>
-
-    <section id="wrapping" class="wrapping section-padding">
-      <div class="container wrapping-inner">
-        <div class="wrapping-text js-reveal">
-          <p class="section-label">— Gift Wrapping —</p>
-          <h2>ラッピングについて</h2>
-          <p class="body-text">
-            コトリでは、全商品にオリジナルのギフトボックスでお届けします。<br>
-            カラフルな花々と小鳥のイラストをあしらった、コトリ特製パッケージ。
-          </p>
-          <ul class="wrapping-notes">
-            <li>ご注文時にラッピング希望をお選びください</li>
-            <li>ギフトボックス（+¥200）もご用意しております</li>
-            <li>のし・メッセージカードは無料で承ります</li>
-          </ul>
-        </div>
-        <div class="wrapping-img-wrap js-reveal">
-           <img src="data:image/jpeg;base64,...(省略)" alt="コトリのギフトボックス">
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2026 Kotori Patisserie. All Rights Reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
