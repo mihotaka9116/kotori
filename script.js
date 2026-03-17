@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.documentElement.classList.add('js-ready');
 
-  // ── 1. 商品データ ──
+  // 商品データ
   const products = [
     {
       en: "Butter Cream Muffin",
@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const container = document.getElementById('products-list');
+  console.log('container:', container);
+
   if (container) {
     products.forEach(p => {
       const card = document.createElement('div');
@@ -45,9 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       container.appendChild(card);
     });
+  } else {
+    console.error('products-list が見つかりません');
   }
 
-  // ── 2. ラッピング項目 ──
+  // ラッピング項目
   const wrapItems = [
     'ご注文時にラッピング希望をお選びください',
     'ギフトボックス（+¥200）もご用意しております',
@@ -62,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 3. ヘッダースクロール ──
+  // ヘッダースクロール
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     if (header) header.classList.toggle('header-scrolled', window.scrollY > 100);
   });
 
-  // ── 4. ハンバーガーメニュー ──
+  // ハンバーガーメニュー
   const navToggle   = document.getElementById('navToggle');
   const mobileMenu  = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
@@ -88,12 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navToggle)   navToggle.addEventListener('click', openMenu);
   if (mobileClose) mobileClose.addEventListener('click', closeMenu);
   if (overlay)     overlay.addEventListener('click', closeMenu);
-
   document.querySelectorAll('.mobile-nav a').forEach(a => {
     a.addEventListener('click', closeMenu);
   });
 
-  // ── 5. フェードイン（商品カード追加後に実行） ──
+  // フェードイン
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -102,10 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // ── 6. 注文フォーム ──
+  // 注文フォーム
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
   if (orderForm && formMsg) {
