@@ -1,87 +1,79 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── JS読み込み確認後にアニメーションを有効化 ── */
+  // アニメーション有効化
   document.documentElement.classList.add('js-ready');
 
-  /* ── 1. 商品データ ── */
+  // 1. 商品データ
   const products = [
     {
-      en: 'Butter Cream Muffin',
-      name: 'バタークリームマフィン',
-      desc: 'しっとりとしたバタークリームをたっぷり使ったマフィン。',
-      price: '¥450',
-      img: 'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&q=80&w=400'
+      en: "Butter Cream Muffin",
+      ja: "バタークリームマフィン",
+      price: "¥280",
+      desc: "ふんわり軽い生地に、バターの香りが広がるマフィン。毎朝焼き立てをご用意しています。",
+      img: "https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=800"
     },
     {
-      en: 'Chocolate Madeleine',
-      name: 'チョコレートマドレーヌ',
-      desc: '濃厚なチョコレートを使った贅沢なマドレーヌ。',
-      price: '¥380',
-      img: 'https://images.unsplash.com/photo-1574085448211-321a9d5620ca?auto=format&fit=crop&q=80&w=400'
+      en: "Chocolate Madeleine",
+      ja: "チョコレートマドレーヌ",
+      price: "¥220",
+      desc: "カカオたっぷりのマドレーヌ。しっとりとした食感と濃厚な風味をお楽しみください。",
+      img: "https://images.unsplash.com/photo-1574610190081-370126742613?auto=format&fit=crop&w=800"
     },
     {
-      en: 'Bear Madeleine',
-      name: 'くまのマドレーヌ',
-      desc: 'くま型の可愛らしいマドレーヌ。贈り物にも人気です。',
-      price: '¥420',
-      img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=400'
-    },
-    {
-      en: 'Seasonal Cookie Tin',
-      name: '季節のクッキー缶',
-      desc: '季節の素材を使ったクッキーを詰め合わせた特製缶。',
-      price: '¥2,400',
-      img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=400'
+      en: "Bear Madeleine",
+      ja: "くまのマドレーヌ",
+      price: "¥280",
+      desc: "くま型のキュートなマドレーヌ。プレーン・チョコの2種類。贈り物にも大人気です。",
+      img: "https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&w=800"
     }
   ];
 
-  const grid = document.getElementById('productsGrid');
-  if (grid) {
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'product-card fade-up';
-      card.innerHTML = `
-        <div class="product-img-wrap">
-          <img src="${p.img}" alt="${p.name}" loading="lazy" />
-        </div>
-        <div class="product-body">
-          <p class="product-en">${p.en}</p>
-          <h3 class="product-name">${p.name}</h3>
-          <p class="product-desc">${p.desc}</p>
-          <p class="product-price">${p.price}</p>
-          <a href="#order" class="btn-order">注文する</a>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
+  const productsContainer = document.getElementById('products-list');
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card fade-up';
+    card.innerHTML = `
+      <div class="product-img"><img src="${p.img}" alt="${p.ja}" loading="lazy"></div>
+      <div class="product-info">
+        <p class="section-label" style="font-size:.7rem;">${p.en}</p>
+        <h3 style="margin-bottom:10px;font-weight:400;">${p.ja}</h3>
+        <p class="body-text" style="font-size:.85rem;margin-bottom:15px;">${p.desc}</p>
+        <p style="color:var(--brown);font-weight:bold;">${p.price}</p>
+      </div>
+    `;
+    productsContainer.appendChild(card);
+  });
 
-  /* ── 2. ヘッダー スクロール ── */
-  const header = document.getElementById('siteHeader');
-  if (header) {
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    });
-  }
+  // 2. ラッピング項目
+  const wrapItems = [
+    'ご注文時にラッピング希望をお選びください',
+    'ギフトボックス（+¥200）もご用意しております',
+    'のし・メッセージカードは無料で承ります'
+  ];
+  const wrapList = document.getElementById('wrapping-notes');
+  wrapItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    wrapList.appendChild(li);
+  });
 
-  /* ── 3. ハンバーガーメニュー ── */
+  // 3. ヘッダースクロール効果
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('header-scrolled', window.scrollY > 100);
+  });
+
+  // 4. ハンバーガーメニュー
   const navToggle = document.getElementById('navToggle');
   const navClose  = document.getElementById('navClose');
   const mainNav   = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => mainNav.classList.add('open'));
+  navClose.addEventListener('click',  () => mainNav.classList.remove('open'));
+  mainNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mainNav.classList.remove('open'));
+  });
 
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => mainNav.classList.add('open'));
-  }
-  if (navClose && mainNav) {
-    navClose.addEventListener('click', () => mainNav.classList.remove('open'));
-  }
-  if (mainNav) {
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mainNav.classList.remove('open'));
-    });
-  }
-
-  /* ── 4. フェードイン ── */
+  // 5. フェードインアニメーション
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -93,23 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  /* ── 5. 注文フォーム ── */
+  // 6. 注文フォーム
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
-
-  if (orderForm && formMsg) {
-    orderForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const name  = orderForm.querySelector('[name="name"]').value.trim();
-      const email = orderForm.querySelector('[name="email"]').value.trim();
-      if (!name || !email) {
-        formMsg.textContent = 'お名前とメールアドレスは必須です。';
-        formMsg.style.color = '#c0392b';
-        return;
-      }
-      formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
-      formMsg.style.color = '';
-      orderForm.reset();
-    });
-  }
+  orderForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name  = orderForm.querySelector('[name="name"]').value.trim();
+    const email = orderForm.querySelector('[name="email"]').value.trim();
+    if (!name || !email) {
+      formMsg.textContent = 'お名前とメールアドレスは必須です。';
+      formMsg.style.color = '#c0392b';
+      return;
+    }
+    formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
+    formMsg.style.color = '';
+    orderForm.reset();
+  });
 });
