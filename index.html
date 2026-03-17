@@ -1,202 +1,109 @@
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kotori | コトリ洋菓子店</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#fdfaf5',
-                        caramel: '#c8976a',
-                        brown: '#4a3728',
-                        dark: '#2c1a0e',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Montserrat:wght@300;400&display=swap');
-        
-        body { font-family: 'Noto Serif JP', serif; background-color: #fdfaf5; color: #2c1a0e; }
-        .font-en { font-family: 'Montserrat', sans-serif; }
-        
-        /* スクロールアニメーション用 */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* 装飾的な回転アニメーション */
-        @keyframes slow-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .animate-slow-spin { animation: slow-spin 20s linear infinite; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotori – コトリ洋菓子店 | 小さな幸せを、ひとつひとつ丁寧に。</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <nav id="header" class="fixed top-0 left-0 w-full z-50 px-6 md:px-10 transition-all duration-300">
-        <div class="max-w-[1100px] mx-auto flex items-center h-[80px] justify-between">
-            <div class="leading-tight">
-                <span class="block font-en text-2xl tracking-wider text-brown">Kotori</span>
-                <span class="block text-[10px] tracking-[0.2em] text-caramel">コトリ洋菓子店</span>
-            </div>
-            <div class="hidden md:flex gap-10 text-[0.8rem] tracking-widest font-en uppercase">
-                <a href="#concept" class="hover:text-caramel transition-colors">Concept</a>
-                <a href="#products" class="hover:text-caramel transition-colors">Products</a>
-                <a href="#wrapping" class="hover:text-caramel transition-colors">Wrapping</a>
-                <a href="#order" class="hover:text-caramel transition-colors">Order</a>
-            </div>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-en">Kotori</span>
+        <span class="logo-ja">コトリ洋菓子店</span>
+      </div>
+      
+      <nav class="nav" id="mainNav">
+        <button class="nav-close" id="navClose" aria-label="メニューを閉じる">✕</button>
+        <div class="nav-links">
+          <a href="#concept">コンセプト</a>
+          <a href="#products">商品一覧</a>
+          <a href="#wrapping">ラッピング</a>
+          <a href="#info">店舗情報</a>
+          <a href="#order" class="nav-cta">ご注文</a>
         </div>
-    </nav>
+      </nav>
+      
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=2000" 
-                 class="w-full h-full object-cover brightness-90" alt="Bakery Hero">
-        </div>
-        <div class="relative z-10 text-center text-white reveal">
-            <h1 class="font-en text-7xl md:text-9xl font-light tracking-tighter mb-4">Kotori</h1>
-            <p class="text-lg tracking-[0.3em] font-light">小さな幸せ、ひとくちの魔法。</p>
-        </div>
+  <main>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <p class="hero-sub fade-up">小さな幸せを、ひとつひとつ丁寧に。</p>
+        <h1 class="hero-title fade-up">Kotori<br><span>コトリ洋菓子店</span></h1>
+        <a href="#products" class="btn-hero fade-up">商品を見る</a>
+      </div>
+      <div class="hero-scroll">scroll</div>
     </section>
 
-    <section id="concept" class="py-32 px-10 bg-white">
-        <div class="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div class="reveal">
-                <p class="font-en text-xs text-caramel tracking-[0.4em] mb-6 uppercase">— About Kotori —</p>
-                <h2 class="text-3xl md:text-4xl leading-relaxed mb-8">小鳥が運ぶ<br>やさしい甘さ</h2>
-                <p class="text-brown/80 leading-loose">
-                    厳選したバターと季節の果実を使い、<br>
-                    ひとつひとつ丁寧に焼き上げています。<br>
-                    日々の暮らしに、小さな彩りを。
-                </p>
-            </div>
-            <div class="relative flex items-center justify-center h-[300px] reveal">
-                <div class="w-[220px] h-[220px] rounded-full bg-[radial-gradient(circle_at_35%_35%,#f5ede0,#c8976a)] opacity-30"></div>
-                <div class="absolute w-[280px] h-[280px] rounded-full border border-caramel/20 animate-slow-spin"></div>
-                <span class="absolute font-en text-xs tracking-widest text-brown/60 uppercase">since 2020</span>
-            </div>
+    <section id="concept" class="concept section-padding">
+      <div class="container concept-inner">
+        <div class="concept-text js-reveal">
+          <p class="section-label">— About Kotori —</p>
+          <h2>小鳥が運ぶ<br>やさしい甘さ</h2>
+          <p class="body-text">
+            コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br>
+            バターの香り、しっとりとした生地、ひとくちの幸せ。<br>
+            大切な人への贈り物に、自分へのご褒美に、どうぞ。
+          </p>
         </div>
+        <div class="concept-deco js-reveal">
+          <div class="deco-circle"></div>
+          <div class="deco-ring"></div>
+          <span class="deco-text">since 2020</span>
+        </div>
+      </div>
     </section>
 
-    <section id="products" class="py-32 px-10">
-        <div class="max-w-[1100px] mx-auto">
-            <div class="text-center mb-20 reveal">
-                <h2 class="font-en text-4xl mb-4 tracking-tight">Standard Menu</h2>
-                <div class="w-12 h-[1px] bg-caramel mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="reveal group cursor-pointer">
-                    <div class="overflow-hidden rounded-custom mb-6 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Cookie">
-                    </div>
-                    <h3 class="text-lg mb-2">コトリの型抜きクッキー</h3>
-                    <p class="text-sm text-brown/60">¥450 (税込)</p>
-                </div>
-                <div class="reveal group cursor-pointer" style="transition-delay: 0.1s;">
-                    <div class="overflow-hidden rounded-custom mb-6 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Toast">
-                    </div>
-                    <h3 class="text-lg mb-2">焦がしバターのフィナンシェ</h3>
-                    <p class="text-sm text-brown/60">¥380 (税込)</p>
-                </div>
-                <div class="reveal group cursor-pointer" style="transition-delay: 0.2s;">
-                    <div class="overflow-hidden rounded-custom mb-6 aspect-[4/5]">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Donut">
-                    </div>
-                    <h3 class="text-lg mb-2">季節の果実パウンドケーキ</h3>
-                    <p class="text-sm text-brown/60">¥2,400 (税込)</p>
-                </div>
-            </div>
+    <section id="products" class="products section-padding bg-light">
+      <div class="container">
+        <div class="section-header js-reveal">
+          <p class="section-label">— Our Products —</p>
+          <h2>商品一覧</h2>
         </div>
+        <div class="products-grid" id="productsGrid">
+          </div>
+      </div>
     </section>
 
-    <section id="wrapping" class="py-32 px-10 bg-warm/50">
-        <div class="max-w-[1000px] mx-auto flex flex-col md:flex-row-reverse items-center gap-16">
-            <div class="w-full md:w-1/2 reveal">
-                <p class="font-en text-xs text-caramel tracking-[0.4em] mb-6 uppercase">— Gift Wrapping —</p>
-                <h2 class="text-3xl mb-8">想いを包む、<br>オリジナルの装い。</h2>
-                <p class="text-brown/80 leading-loose mb-10">
-                    大切な方への贈り物に。コトリでは環境に配慮した素材を使用した、温もりのあるラッピングをご用意しています。
-                </p>
-                <ul class="space-y-4 text-sm text-brown/70">
-                    <li>・オリジナル鳥柄の包装紙 (+¥100)</li>
-                    <li>・リサイクルコットンの巾着 (+¥300)</li>
-                    <li>・メッセージカード (無料)</li>
-                </ul>
-            </div>
-            <div class="w-full md:w-1/2 reveal">
-                <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=1000" 
-                     class="rounded-2xl shadow-sm" alt="Wrapping">
-            </div>
+    <section id="wrapping" class="wrapping section-padding">
+      <div class="container wrapping-inner">
+        <div class="wrapping-text js-reveal">
+          <p class="section-label">— Gift Wrapping —</p>
+          <h2>ラッピングについて</h2>
+          <p class="body-text">
+            コトリでは、全商品にオリジナルのギフトボックスでお届けします。<br>
+            カラフルな花々と小鳥のイラストをあしらった、コトリ特製パッケージ。
+          </p>
+          <ul class="wrapping-notes">
+            <li>ご注文時にラッピング希望をお選びください</li>
+            <li>ギフトボックス（+¥200）もご用意しております</li>
+            <li>のし・メッセージカードは無料で承ります</li>
+          </ul>
         </div>
-    </section>
-
-    <section id="order" class="py-32 px-10 bg-white">
-        <div class="max-w-[700px] mx-auto reveal">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl mb-4 font-en tracking-tight">Order Form</h2>
-                <p class="text-sm text-brown/60 italic underline decoration-caramel/30 underline-offset-4">※現在、発送まで約1週間ほどお時間をいただいております。</p>
-            </div>
-            <form class="space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex flex-col">
-                        <label class="text-xs tracking-widest text-brown/60 mb-2 uppercase">Name / お名前</label>
-                        <input type="text" class="border-b border-caramel/20 py-2 focus:border-caramel outline-none transition-colors bg-transparent">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="text-xs tracking-widest text-brown/60 mb-2 uppercase">Email / メールアドレス</label>
-                        <input type="email" class="border-b border-caramel/20 py-2 focus:border-caramel outline-none transition-colors bg-transparent">
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <label class="text-xs tracking-widest text-brown/60 mb-2 uppercase">Message / ご注文内容・お問合せ</label>
-                    <textarea rows="4" class="border border-caramel/20 p-4 focus:border-caramel outline-none transition-colors bg-transparent rounded-lg"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-dark text-white font-en py-5 tracking-[0.2em] uppercase hover:bg-caramel transition-colors rounded-full">
-                    Send Order
-                </button>
-            </form>
+        <div class="wrapping-img-wrap js-reveal">
+           <img src="flower.jpg" alt="コトリのギフトボックス">
         </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="py-20 bg-dark text-white/80 text-center">
-        <p class="font-en text-3xl tracking-tighter mb-4 text-caramel">Kotori</p>
-        <p class="text-[10px] tracking-[0.3em] uppercase opacity-40">© 2026 Kotori Confectionery</p>
-    </footer>
+  <footer class="site-footer">
+    <p>&copy; 2026 Kotori Patisserie. All Rights Reserved.</p>
+  </footer>
 
-    <script>
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('bg-white/80', 'backdrop-blur-md', 'h-[70px]');
-                header.classList.remove('h-[80px]');
-            } else {
-                header.classList.remove('bg-white/80', 'backdrop-blur-md', 'h-[70px]');
-                header.classList.add('h-[80px]');
-            }
-        });
-
-        // Intersection Observer (Animation)
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
