@@ -1,75 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kotori – コトリ洋菓子店 | 小さな幸せを、ひとつひとつ丁寧に。</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <header class="site-header" id="siteHeader">
-    <div class="header-inner">
-      <div class="logo">
-        <span class="logo-en">Kotori</span>
-        <span class="logo-ja">コトリ洋菓子店</span>
-      </div>
-      
-      <nav class="nav" id="mainNav">
-        <button class="nav-close" id="navClose" aria-label="メニューを閉じる">✕</button>
-        <div class="nav-links">
-          <a href="#concept">コンセプト</a>
-          <a href="#products">商品一覧</a>
-          <a href="#wrapping">ラッピング</a>
-          <a href="#info">店舗情報</a>
-          <a href="#order" class="nav-cta">ご注文</a>
-        </div>
-      </nav>
-      
-      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <p class="hero-sub fade-up">小さな幸せを、ひとつひとつ丁寧に。</p>
-        <h1 class="hero-title fade-up">Kotori<br><span>コトリ洋菓子店</span></h1>
-        <a href="#products" class="btn-hero fade-up">商品を見る</a>
-      </div>
-      <div class="hero-scroll">scroll</div>
-    </section>
-
-    <section id="concept" class="concept section-padding">
-      <div class="container concept-inner">
-        <div class="concept-text js-reveal">
-          <p class="section-label">— About Kotori —</p>
-          <h2>小鳥が運ぶ<br>やさしい甘さ</h2>
-          <p class="body-text">
-            コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br>
-            バターの香り、しっとりとした生地、ひとくちの幸せ。<br>
-            大切な人への贈り物に、自分へのご褒美に、どうぞ。
-          </p>
-        </div>
-        <div class="concept-deco js-reveal">
-          <div class="deco-circle"></div>
-          <div class="deco-ring"></div>
-          <span class="deco-text">since 2020</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="products" class="products section-padding bg-light">
+<section id="products" class="products section-padding bg-light">
       <div class="container">
-        <div class="section-header js-reveal">
+        <div class="products-header js-reveal">
           <p class="section-label">— Our Products —</p>
           <h2>商品一覧</h2>
         </div>
@@ -100,10 +31,12 @@
     </section>
   </main>
 
- <footer className="py-12 bg-dark text-center">
-      <p className="font-en text-3xl font-light tracking-[0.15em] text-caramel mb-2">Kotori</p>
-      <p className="text-[0.75rem] tracking-[0.1em] text-white/40">© 2025 コトリ洋菓子店. All rights reserved.</p>
-    </footer>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-logo">Kotori</p>
+      <p class="footer-copy">© 2026 コトリ洋菓子店. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
