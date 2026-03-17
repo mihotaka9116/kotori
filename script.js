@@ -1,17 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // アニメーション有効化
   document.documentElement.classList.add('js-ready');
 
-  // ── 1. ラッピング写真を元のbase64に戻す ──
-  const originalSrc = document.querySelector('.wrapping-img');
-  if (originalSrc) {
-    // HTMLのsrc="wrapping.jpg"のままでOK。
-    // リポジトリにwrapping.jpgがある場合はそのまま表示される。
-    // 元のbase64をHTMLのsrc属性に直接書いてあるなら変更不要。
-  }
-
-  // ── 2. 商品データ ──
+  // ── 1. 商品データ ──
   const products = [
     {
       en: "Butter Cream Muffin",
@@ -40,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (container) {
     products.forEach(p => {
       const card = document.createElement('div');
-      card.className = 'product-card fade-up';
+      card.className = 'product-card';
       card.innerHTML = `
         <div class="product-img">
           <img src="${p.img}" alt="${p.ja}" loading="lazy">
@@ -56,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 3. ラッピング項目 ──
+  // ── 2. ラッピング項目 ──
   const wrapItems = [
     'ご注文時にラッピング希望をお選びください',
     'ギフトボックス（+¥200）もご用意しております',
@@ -71,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── 4. ヘッダースクロール ──
+  // ── 3. ヘッダースクロール ──
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     if (header) header.classList.toggle('header-scrolled', window.scrollY > 100);
   });
 
-  // ── 5. ハンバーガーメニュー ──
+  // ── 4. ハンバーガーメニュー ──
   const navToggle   = document.getElementById('navToggle');
   const mobileMenu  = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
@@ -102,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     a.addEventListener('click', closeMenu);
   });
 
-  // ── 6. フェードイン ──
+  // ── 5. フェードイン（商品カード追加後に実行） ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -114,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // ── 7. 注文フォーム ──
+  // ── 6. 注文フォーム ──
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
   if (orderForm && formMsg) {
