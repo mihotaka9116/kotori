@@ -9,21 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
       ja: "バタークリームマフィン",
       price: "¥280",
       desc: "ふんわり軽い生地に、バターの香りが広がるマフィン。毎朝焼き立てをご用意しています。",
-      img: "https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=800"
+      img: "maffin.jpg"
     },
     {
       en: "Chocolate Madeleine",
       ja: "チョコレートマドレーヌ",
       price: "¥220",
       desc: "カカオたっぷりのマドレーヌ。しっとりとした食感と濃厚な風味をお楽しみください。",
-      img: "https://images.unsplash.com/photo-1574610190081-370126742613?auto=format&fit=crop&w=800"
+      img: "madrane.jpg"
     },
     {
       en: "Bear Madeleine",
       ja: "くまのマドレーヌ",
       price: "¥280",
       desc: "くま型のキュートなマドレーヌ。プレーン・チョコの2種類。贈り物にも大人気です。",
-      img: "https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&w=800"
+      img: "bear.jpg"
     }
   ];
 
