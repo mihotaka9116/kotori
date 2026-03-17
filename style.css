@@ -190,3 +190,62 @@ img{display:block;width:100%;object-fit:cover;}
     gap: 1.5rem; /* スマホでは間隔を狭める */
   }
 }
+
+/* --- ナビゲーションの間隔をあける --- */
+.nav-links {
+  display: flex;
+  gap: 4rem; /* 3.5remから4remに広げ、さらにゆとりを持たせました */
+  align-items: center;
+}
+
+/* --- 商品一覧のタイトルを中央に配置 --- */
+.products-header {
+  text-align: center;
+  margin-bottom: 4rem; /* タイトルとカードの間隔 */
+}
+
+.products-header .section-label {
+  display: block; /* 中央寄せを確実にするため */
+  margin-bottom: 0.5rem;
+}
+
+.products-header h2 {
+  font-family: var(--font-ja);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--dark);
+  position: relative;
+  display: inline-block; /* 下線などを入れる場合のためにinline-blockに */
+}
+
+/* --- フッターの文字を中央にする --- */
+.site-footer {
+  padding: 5rem 1.25rem;
+  background-color: var(--dark); /* #2c1a0e */
+  text-align: center; /* これで中の文字がすべて中央に寄ります */
+  width: 100%;
+}
+
+.footer-logo {
+  font-family: var(--font-en);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--caramel);
+  margin-bottom: 1rem;
+  display: block; /* 確実に一行占有させて中央寄せ */
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  display: block;
+}
+
+/* レスポンシブ対応（スマホで間隔が広すぎないように） */
+@media(max-width:900px){
+  .nav-links {
+    gap: 2rem;
+  }
+}
