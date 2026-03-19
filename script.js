@@ -126,3 +126,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// --- カレンダー生成機能 ---
+  const calDays = document.getElementById('calendar-days');
+  const calMonth = document.getElementById('calendar-month');
+
+  if (calDays && calMonth) {
+    const now = new Date(); // 2026年の今日
+    const year = now.getFullYear();
+    const month = now.getMonth(); // 0-11
+
+    // 表示を更新 (例: 2026年 3月)
+    calMonth.textContent = `${year}年 ${month + 1}月`;
+
+    // 月の最初の日と最後の日を取得
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    // 空白を埋める
+    for (let i = 0; i < firstDay; i++) {
+      calDays.appendChild(document.createElement('span'));
+    }
+
+    // 日付を入れる
+    for (let date = 1; date <= lastDate; date++) {
+      const span = document.createElement('span');
+      span.textContent = date;
+      
+      // 水曜日 (getDay() === 3) を定休日に設定
+      const dayOfWeek = new Date(year, month, date).getDay();
+      if (dayOfWeek === 3) {
+        span.classList.add('closed');
+      }
+      
+      calDays.appendChild(span);
+    }
+  }
