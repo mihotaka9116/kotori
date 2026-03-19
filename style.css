@@ -171,3 +171,105 @@ img { display: block; width: 100%; object-fit: cover; }
   .nav { display: none; }
   .nav-toggle { display: block; }
 }
+
+/* ==========================================
+   NEWS SECTION
+   ========================================== */
+.news {
+  padding: 7rem 2.5rem;
+  background: var(--white);
+}
+
+.news-inner {
+  max-width: 800px; /* お知らせは見やすさ重視で少し幅を絞る */
+  margin: 0 auto;
+}
+
+.news h2 {
+  font-family: var(--font-ja);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 3rem;
+}
+
+.news-list {
+  border-top: 1px solid rgba(200, 151, 106, 0.2);
+}
+
+.news-item {
+  display: flex;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(200, 151, 106, 0.15);
+  gap: 2rem;
+  align-items: baseline;
+  transition: background var(--transition);
+}
+
+.news-item:hover {
+  background: rgba(250, 247, 242, 0.5); /* ほんのり背景色を変える */
+}
+
+.news-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  min-width: 180px; /* 日付とタグの幅を固定して揃える */
+}
+
+.news-meta time {
+  font-family: var(--font-en);
+  font-size: 0.9rem;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+}
+
+/* ニュースタグの共通スタイル */
+.news-tag {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+/* カテゴリごとの色分け */
+.tag-seasonal { background: #e8a7b3; } /* さくら・季節限定 */
+.tag-info { background: var(--caramel); } /* お知らせ */
+.tag-media { background: var(--brown); } /* メディア */
+
+.news-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.news-more {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-more {
+  font-size: 0.8rem;
+  color: var(--brown);
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--caramel);
+  padding-bottom: 4px;
+  transition: color var(--transition);
+}
+
+.btn-more:hover {
+  color: var(--caramel);
+}
+
+/* スマホ対応：縦並びに切り替え */
+@media (max-width: 600px) {
+  .news-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .news-meta {
+    min-width: auto;
+  }
+}
