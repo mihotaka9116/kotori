@@ -19,8 +19,8 @@
       </div>
       <nav class="nav" id="mainNav">
         <a href="#concept">コンセプト</a>
-        <a href="#news">お知らせ</a>
         <a href="#products">商品一覧</a>
+        <a href="#wrapping">ラッピング</a>
         <a href="#info">店舗情報</a>
         <a href="#order">ご注文</a>
       </nav>
@@ -28,13 +28,13 @@
     </div>
   </header>
 
-  <!-- モバイルメニュー -->
+  <!-- モバイルメニューオーバーレイ -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" id="mobileClose">✕</button>
     <nav class="mobile-nav">
       <a href="#concept">コンセプト</a>
-      <a href="#news">お知らせ</a>
       <a href="#products">商品一覧</a>
+      <a href="#wrapping">ラッピング</a>
       <a href="#info">店舗情報</a>
       <a href="#order">ご注文</a>
     </nav>
@@ -70,80 +70,45 @@
     </div>
   </section>
 
-  <!-- お知らせセクション -->
-  <section id="news" class="news">
-    <div class="news-inner fade-up">
-      <p class="section-label">— News —</p>
-      <h2>お知らせ</h2>
-      <div class="news-list">
-        <article class="news-item">
-          <div class="news-meta">
-            <time datetime="2026-03-15">2026.03.15</time>
-            <span class="news-tag tag-seasonal">季節限定</span>
-          </div>
-          <h3 class="news-title">春の新作「さくらと苺のマフィン」が登場しました。</h3>
-        </article>
-        <article class="news-item">
-          <div class="news-meta">
-            <time datetime="2026-03-01">2026.03.01</time>
-            <span class="news-tag tag-info">お知らせ</span>
-          </div>
-          <h3 class="news-title">ホワイトデー限定ギフトセットのご予約受付を開始しました。</h3>
-        </article>
-        <article class="news-item">
-          <div class="news-meta">
-            <time datetime="2026-02-20">2026.02.20</time>
-            <span class="news-tag tag-media">メディア</span>
-          </div>
-          <h3 class="news-title">雑誌「ことり日和」の特集に掲載されました。</h3>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <section id="products" class="products">
     <div class="products-header fade-up">
       <p class="section-label">— Our Products —</p>
       <h2>商品一覧</h2>
     </div>
-    <div class="products-grid" id="products-list"></div>
+   <div class="products-grid" id="products-list"></div>
+  </section>
+
+  <section id="wrapping" class="wrapping">
+    <div class="wrapping-inner fade-up">
+      <div class="wrapping-text">
+        <p class="section-label">— Gift Wrapping —</p>
+        <h2>ラッピングについて</h2>
+        <p class="body-text">
+          コトリでは、焼き菓子をオリジナルのギフトボックスでお届けします。<br/>
+          カラフルな花々と小鳥のイラストをあしらった、コトリ特製パッケージ。<br/><br/>
+          大切な人へのプレゼントはもちろん、自分へのご褒美にもぴったりな、<br/>
+          華やかな贈り物として喜ばれています。
+        </p>
+        <ul class="wrapping-notes" id="wrapping-notes"></ul>
+      </div>
+      <div class="wrapping-img-wrap">
+        <img src="flower.jpg" alt="コトリオリジナルギフトボックス" class="wrapping-img" />
+　　　　<span class="wrapping-caption">コトリオリジナルギフトボックス</span>
+      </div>
+    </div>
   </section>
 
   <section id="info" class="info">
     <div class="info-inner fade-up">
       <p class="section-label">— Shop Info —</p>
       <h2>店舗情報</h2>
-      <div class="info-content-layout">
-        <!-- 左側：店舗情報テーブル -->
-        <table class="info-table">
-          <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
-          <tr><th>住所</th><td>〒028-×××× 岩手県遠野市○○町1-2-3</td></tr>
-          <tr><th>営業時間</th><td>10:00 – 18:00</td></tr>
-          <tr><th>定休日</th><td>毎週水曜日<br><small class="holiday-note">（祝日の場合は翌木曜日）</small></td></tr>
-          <tr><th>電話</th><td>0198-××××-××××</td></tr>
-          <tr><th>Instagram</th><td>@kotori_patisserie</td></tr>
-        </table>
-
-        <!-- 右側：カレンダー -->
-        <div class="calendar-container">
-          <div class="calendar-main">
-            <div class="calendar-header">
-              <span id="calendar-month">2026年 3月</span>
-            </div>
-            <div class="calendar-weekdays">
-              <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
-            </div>
-            <div id="calendar-days" class="calendar-days">
-              <!-- JSで生成 -->
-            </div>
-          </div>
-          <div class="calendar-footer-text">
-            <p class="hours-text"><strong>営業時間：10:00 - 18:00</strong></p>
-            <p class="closed-text">定休日：毎週水曜日（祝日の場合は翌木曜日）</p>
-            <p class="calendar-note">※ <span class="closed-label">■</span> は定休日です</p>
-          </div>
-        </div>
-      </div>
+      <table class="info-table">
+        <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
+        <tr><th>住所</th><td>〒028-×××× 岩手県遠野市○○町1-2-3</td></tr>
+        <tr><th>営業時間</th><td>10:00 – 18:00（水曜定休）</td></tr>
+        <tr><th>電話</th><td>0198-××××-××××</td></tr>
+        <tr><th>Instagram</th><td>@kotori_patisserie</td></tr>
+      </table>
     </div>
   </section>
 
@@ -151,18 +116,50 @@
     <p class="section-label">— Online Order —</p>
     <h2>ご注文</h2>
     <p class="body-text">オンラインでのご注文はフォームよりお承りしております。</p>
-    <form class="order-form" id="orderForm">
-      <div class="form-row"><label>お名前 <span>*</span></label><input type="text" required></div>
-      <div class="form-row"><label>メールアドレス <span>*</span></label><input type="email" required></div>
+    <form class="order-form" id="orderForm" novalidate>
+      <div class="form-row">
+        <label>お名前 <span>*</span></label>
+        <input type="text" name="name" placeholder="山田 花子" required />
+      </div>
+      <div class="form-row">
+        <label>メールアドレス <span>*</span></label>
+        <input type="email" name="email" placeholder="example@email.com" required />
+      </div>
+      <div class="form-row">
+        <label>ご希望商品</label>
+        <select name="product">
+          <option value="">選択してください</option>
+          <option>バタークリームマフィン</option>
+          <option>チョコレートマドレーヌ</option>
+          <option>くまのマドレーヌ</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>ラッピング</label>
+        <select name="wrapping">
+          <option value="none">ラッピングなし</option>
+          <option value="paper">包装紙ラッピング（無料）</option>
+          <option value="box">ギフトボックス（+¥200）</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>メッセージカード</label>
+        <input type="text" name="message_card" placeholder="メッセージを入力（無料）" />
+      </div>
+      <div class="form-row">
+        <label>その他ご要望</label>
+        <textarea name="message" rows="4" placeholder="ご要望など"></textarea>
+      </div>
       <button type="submit" class="btn-submit">送信する</button>
+      <p class="form-msg" id="formMsg"></p>
     </form>
   </section>
 
   <footer class="site-footer">
     <p class="footer-logo">Kotori</p>
-    <p class="footer-copy">© 2026 コトリ洋菓子店. All rights reserved.</p>
+    <p class="footer-copy">© 2025 コトリ洋菓子店. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+ <script src="script.js"></script>
 </body>
 </html>
