@@ -1,242 +1,173 @@
+/* ==========================================
+   VARIABLES & BASE
+   ========================================== */
 :root {
-  --cream:#faf7f2; --warm:#f5ede0; --caramel:#c8976a;
-  --brown:#7a4f2d; --dark:#2c1a0e; --gray:#9b8b7d; --white:#ffffff;
-  --font-en:'Cormorant Garamond',Georgia,serif;
-  --font-ja:'Noto Serif JP',serif;
-  --radius:12px; --shadow:0 8px 32px rgba(44,26,14,.10);
-  --transition:.35s cubic-bezier(.4,0,.2,1);
+  --cream: #faf7f2;
+  --warm: #f5ede0;
+  --caramel: #c8976a;
+  --brown: #7a4f2d;
+  --dark: #2c1a0e;
+  --gray: #9b8b7d;
+  --white: #ffffff;
+  --font-en: 'Cormorant Garamond', Georgia, serif;
+  --font-ja: 'Noto Serif JP', serif;
+  --radius: 12px;
+  --shadow: 0 8px 32px rgba(44, 26, 14, 0.10);
+  --transition: .35s cubic-bezier(.4, 0, .2, 1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--dark);font-family:var(--font-ja);font-weight:300;line-height:1.8;overflow-x:hidden;}
-a{color:inherit;text-decoration:none;}
-img{display:block;width:100%;object-fit:cover;}
-.section-label{font-family:var(--font-en);font-size:.85rem;letter-spacing:.25em;color:var(--caramel);margin-bottom:.5rem;}
-.body-text{font-size:.95rem;color:var(--brown);line-height:2;}
 
-/* HEADER */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 2.5rem;background:rgba(250,247,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,151,106,.2);transition:box-shadow var(--transition);}
-.site-header.header-scrolled{box-shadow:0 2px 20px rgba(44,26,14,.08);}
-.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;height:70px;gap:2rem;}
-.logo{flex:1;}
-.logo-en{display:block;font-family:var(--font-en);font-size:1.5rem;font-weight:400;letter-spacing:.12em;color:var(--brown);line-height:1;}
-.logo-ja{display:block;font-size:.65rem;letter-spacing:.2em;color:var(--caramel);}
-.nav{display:flex;gap:2rem;}
-.nav a{font-size:.82rem;letter-spacing:.12em;color:var(--brown);position:relative;padding-bottom:2px;transition:color var(--transition);}
-.nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--caramel);transition:width var(--transition);}
-.nav a:hover{color:var(--caramel);}
-.nav a:hover::after{width:100%;}
-.nav-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--brown);cursor:pointer;padding:.2rem .4rem;line-height:1;}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { 
+  background: var(--cream); 
+  color: var(--dark); 
+  font-family: var(--font-ja); 
+  font-weight: 300; 
+  line-height: 1.8; 
+  overflow-x: hidden; 
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; object-fit: cover; }
+
+.section-label { font-family: var(--font-en); font-size: .85rem; letter-spacing: .25em; color: var(--caramel); margin-bottom: .5rem; }
+.body-text { font-size: .95rem; color: var(--brown); line-height: 2; }
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 2.5rem; background: rgba(250, 247, 242, .92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(200, 151, 106, .2); transition: box-shadow var(--transition); }
+.site-header.header-scrolled { box-shadow: 0 2px 20px rgba(44, 26, 14, .08); }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; height: 70px; gap: 2rem; }
+.logo { flex: 1; }
+.logo-en { display: block; font-family: var(--font-en); font-size: 1.5rem; font-weight: 400; letter-spacing: .12em; color: var(--brown); line-height: 1; }
+.logo-ja { display: block; font-size: .65rem; letter-spacing: .2em; color: var(--caramel); }
+.nav { display: flex; gap: 2rem; }
+.nav a { font-size: .82rem; letter-spacing: .12em; color: var(--brown); position: relative; padding-bottom: 2px; transition: color var(--transition); }
+.nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--caramel); transition: width var(--transition); }
+.nav a:hover { color: var(--caramel); }
+.nav a:hover::after { width: 100%; }
+.nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--brown); cursor: pointer; padding: .2rem .4rem; line-height: 1; }
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--white);z-index:300;padding:2rem 1.5rem;box-shadow:-4px 0 24px rgba(44,26,14,.12);transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;}
-.mobile-menu.open{right:0;}
-.mobile-menu-close{align-self:flex-end;background:none;border:none;font-size:1.4rem;color:var(--brown);cursor:pointer;padding:.3rem .5rem;line-height:1;margin-bottom:2rem;}
-.mobile-menu-close:hover{color:var(--caramel);}
-.mobile-nav{display:flex;flex-direction:column;gap:1.5rem;}
-.mobile-nav a{font-size:1rem;letter-spacing:.15em;color:var(--dark);padding:.5rem 0;border-bottom:1px solid rgba(200,151,106,.2);transition:color var(--transition);}
-.mobile-nav a:hover{color:var(--caramel);}
-.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:250;opacity:0;pointer-events:none;transition:opacity .35s ease;}
-.mobile-overlay.open{opacity:1;pointer-events:auto;}
+.mobile-menu { position: fixed; top: 0; right: -280px; width: 280px; height: 100vh; background: var(--white); z-index: 300; padding: 2rem 1.5rem; box-shadow: -4px 0 24px rgba(44, 26, 14, .12); transition: right .35s cubic-bezier(.4, 0, .2, 1); display: flex; flex-direction: column; }
+.mobile-menu.open { right: 0; }
+.mobile-menu-close { align-self: flex-end; background: none; border: none; font-size: 1.4rem; color: var(--brown); cursor: pointer; padding: .3rem .5rem; line-height: 1; margin-bottom: 2rem; }
+.mobile-nav { display: flex; flex-direction: column; gap: 1.5rem; }
+.mobile-nav a { font-size: 1rem; letter-spacing: .15em; color: var(--dark); padding: .5rem 0; border-bottom: 1px solid rgba(200, 151, 106, .2); }
+.mobile-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, .4); z-index: 250; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.mobile-overlay.open { opacity: 1; pointer-events: auto; }
 
-/* HERO */
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(200,151,106,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(122,79,45,.10) 0%,transparent 55%),linear-gradient(160deg,#faf7f2 0%,#f5ede0 60%,#ede0ce 100%);}
-.hero-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(200,151,106,.15) 1px,transparent 1px);background-size:28px 28px;}
-.hero-content{position:relative;text-align:center;z-index:1;}
-.hero-sub{font-family:var(--font-ja);font-size:.9rem;letter-spacing:.3em;color:var(--caramel);margin-bottom:1rem;}
-.hero-title{font-family:var(--font-en);font-size:clamp(4rem,10vw,8rem);font-weight:300;line-height:1.1;color:var(--brown);letter-spacing:.05em;}
-.hero-title span{display:block;font-family:var(--font-ja);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:300;letter-spacing:.4em;color:var(--caramel);margin-top:.5rem;}
-.btn-hero{display:inline-block;margin-top:2.5rem;padding:.85rem 2.5rem;border:1.5px solid var(--caramel);color:var(--brown);font-size:.82rem;letter-spacing:.25em;border-radius:50px;transition:background var(--transition),color var(--transition);}
-.btn-hero:hover{background:var(--caramel);color:var(--white);}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--font-en);font-size:.75rem;letter-spacing:.2em;color:var(--gray);animation:heroScroll 2s ease-in-out infinite;}
-@keyframes heroScroll{0%,100%{opacity:.5;transform:translateX(-50%) translateY(0);}50%{opacity:1;transform:translateX(-50%) translateY(6px);}}
+/* ==========================================
+   HERO / CONCEPT / PRODUCTS / WRAPPING
+   ========================================== */
+.hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 60%, rgba(200, 151, 106, .18) 0%, transparent 60%), linear-gradient(160deg, #faf7f2 0%, #f5ede0 100%); }
+.hero-content { position: relative; text-align: center; z-index: 1; }
+.hero-title { font-family: var(--font-en); font-size: clamp(4rem, 10vw, 8rem); font-weight: 300; line-height: 1.1; color: var(--brown); }
+.btn-hero { display: inline-block; margin-top: 2.5rem; padding: .85rem 2.5rem; border: 1.5px solid var(--caramel); color: var(--brown); border-radius: 50px; transition: all var(--transition); }
+.btn-hero:hover { background: var(--caramel); color: var(--white); }
 
-/* CONCEPT */
-.concept{padding:7rem 2.5rem;background:var(--white);}
-.concept-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.concept-text h2{font-family:var(--font-ja);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;line-height:1.6;color:var(--dark);margin-bottom:1.5rem;}
-.concept-deco{position:relative;display:flex;align-items:center;justify-content:center;height:280px;}
-.deco-circle{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--warm),var(--caramel));opacity:.35;}
-.deco-ring{position:absolute;width:240px;height:240px;border-radius:50%;border:1.5px solid var(--caramel);opacity:.4;animation:spin 18s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
-.deco-text{position:absolute;font-family:var(--font-en);font-size:.9rem;letter-spacing:.25em;color:var(--brown);opacity:.7;}
+.concept { padding: 7rem 2.5rem; background: var(--white); }
+.concept-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 
-/* PRODUCTS */
-.products{padding:7rem 2.5rem;background:var(--cream);}
-.products-header{text-align:center;margin-bottom:4rem;}
-.products-header h2{font-family:var(--font-ja);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--dark);}
-.products-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
-.product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition);}
-.product-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(44,26,14,.14);}
-.product-img{width:100%;height:220px;overflow:hidden;}
-.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.product-card:hover .product-img img{transform:scale(1.05);}
-.product-info{padding:1.5rem;}
+.products { padding: 7rem 2.5rem; background: var(--cream); }
+.products-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.product-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform var(--transition); }
+.product-card:hover { transform: translateY(-6px); }
 
-/* WRAPPING */
-.wrapping{padding:7rem 2.5rem;background:var(--white);}
-.wrapping-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.wrapping-text h2{font-family:var(--font-ja);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--dark);margin-bottom:1.5rem;}
-.wrapping-notes{list-style:none;margin-top:1.5rem;}
-.wrapping-notes li{font-size:.88rem;color:var(--brown);padding:.4rem 0 .4rem 1.2rem;border-bottom:1px solid rgba(200,151,106,.15);position:relative;}
-.wrapping-notes li::before{content:'✦';position:absolute;left:0;color:var(--caramel);font-size:.6rem;top:.55rem;}
-.wrapping-img-wrap{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--white);padding:1.5rem;}
-.wrapping-img{width:100%;height:auto;border-radius:8px;object-fit:contain;}
-.wrapping-caption{display:block;text-align:center;margin-top:.75rem;font-family:var(--font-ja);font-size:.78rem;letter-spacing:.15em;color:var(--gray);}
+.wrapping { padding: 7rem 2.5rem; background: var(--white); }
+.wrapping-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 
-/* INFO */
-.info{padding:7rem 2.5rem;background:var(--warm);}
-.info-inner{max-width:700px;margin:0 auto;}
-.info h2{font-family:var(--font-ja);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--dark);margin-bottom:2rem;}
-.info-table{width:100%;border-collapse:collapse;font-size:.92rem;}
-.info-table th,.info-table td{padding:.9rem 1rem;border-bottom:1px solid rgba(200,151,106,.2);text-align:left;vertical-align:middle;}
-.info-table th{width:120px;color:var(--caramel);font-weight:400;letter-spacing:.1em;font-size:.85rem;}
-.info-table td{color:var(--dark);}
+/* ==========================================
+   SHOP INFO & CALENDAR (高さ揃え対応)
+   ========================================== */
+.info { padding: 7rem 2.5rem; background: var(--warm); }
+.info-inner { max-width: 1000px; margin: 0 auto; } /* カレンダー横並びのため幅を広げました */
 
-/* ORDER */
-.order{padding:7rem 2.5rem;background:var(--cream);max-width:700px;margin:0 auto;}
-.order h2{font-family:var(--font-ja);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;color:var(--dark);margin-bottom:1rem;}
-.order .body-text{margin-bottom:2.5rem;}
-.order-form{display:flex;flex-direction:column;gap:1.2rem;}
-.form-row{display:flex;flex-direction:column;gap:.4rem;}
-.form-row label{font-size:.82rem;letter-spacing:.1em;color:var(--brown);}
-.form-row label span{color:var(--caramel);}
-.form-row input,.form-row select,.form-row textarea{padding:.75rem 1rem;border:1px solid rgba(200,151,106,.35);border-radius:8px;background:var(--white);font-family:var(--font-ja);font-size:.92rem;color:var(--dark);outline:none;transition:border-color var(--transition);}
-.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--caramel);}
-.btn-submit{align-self:flex-start;padding:.85rem 2.5rem;background:var(--caramel);color:var(--white);border:none;border-radius:50px;font-family:var(--font-ja);font-size:.88rem;letter-spacing:.2em;cursor:pointer;transition:background var(--transition),transform var(--transition);}
-.btn-submit:hover{background:var(--brown);transform:translateY(-2px);}
-.form-msg{font-size:.88rem;color:var(--caramel);letter-spacing:.1em;margin-top:.5rem;min-height:1.2rem;}
-
-/* FOOTER */
-.site-footer{padding:3rem;background:var(--dark);text-align:center;}
-.footer-logo{font-family:var(--font-en);font-size:1.8rem;font-weight:300;letter-spacing:.15em;color:var(--caramel);margin-bottom:.5rem;}
-.footer-copy{font-size:.75rem;letter-spacing:.1em;color:rgba(250,247,242,.4);}
-
-/* ANIMATIONS */
-.fade-up{opacity:1;transform:translateY(0);transition:opacity .7s ease,transform .7s ease;}
-.js-ready .fade-up{opacity:0;transform:translateY(28px);}
-.js-ready .fade-up.visible{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .concept-inner,.wrapping-inner{grid-template-columns:1fr;gap:3rem;}
-  .products-grid{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:600px){
-  .site-header{padding:0 1.2rem;}
-  .nav{display:none;}
-  .nav-toggle{display:block;}
-  .products-grid{grid-template-columns:1fr;}
-  .hero,.concept,.products,.wrapping,.info,.order{padding-left:1.2rem;padding-right:1.2rem;}
-}
-
-/* 店舗情報とカレンダーを横並びにする（PC時） */
 .info-content-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
   margin-top: 2rem;
-  align-items: start;
+  align-items: stretch; /* 左右の高さを揃える */
 }
 
-/* カレンダー本体 */
-.calendar-container {
+/* 左側：テーブルのカード */
+.info-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
   background: var(--white);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  display: block; /* paddingを効かせるため */
 }
-.calendar-header {
-  text-align: center;
-  font-weight: 600;
-  color: var(--brown);
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
+
+.info-table tr:last-child th, 
+.info-table tr:last-child td { border-bottom: none; }
+
+.info-table th, .info-table td {
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid rgba(200, 151, 106, 0.15);
+  text-align: left;
 }
-.calendar-weekdays, .calendar-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
+.info-table th { width: 120px; color: var(--caramel); font-weight: 400; font-size: 0.85rem; }
+
+/* 右側：カレンダーのカード */
+.calendar-container {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 中身を上下に広げて高さを維持 */
+  height: 100%;
 }
-.calendar-weekdays span {
-  font-size: 0.75rem;
-  color: var(--gray);
-  padding-bottom: 0.5rem;
-}
-.calendar-days span {
-  font-size: 0.9rem;
-  padding: 0.5rem 0;
-  color: var(--dark);
-}
+
+.calendar-header { text-align: center; font-weight: 600; color: var(--brown); margin-bottom: 1.5rem; font-size: 1.1rem; }
+.calendar-weekdays, .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+.calendar-weekdays span { font-size: 0.75rem; color: var(--gray); padding-bottom: 0.8rem; }
+.calendar-days span { font-size: 0.95rem; padding: 0.6rem 0; color: var(--dark); }
+
 /* 定休日（水曜）のスタイル */
 .calendar-days span.closed {
   background: rgba(200, 151, 106, 0.15);
   color: var(--caramel);
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 600;
 }
-.calendar-note {
-  font-size: 0.75rem;
-  color: var(--gray);
-  margin-top: 1rem;
-  text-align: center;
-}
+
+.calendar-note { font-size: 0.75rem; color: var(--gray); margin-top: 1.5rem; text-align: center; }
 .closed-label { color: var(--caramel); margin-right: 4px; }
 
-/* スマホ対応 */
-@media (max-width: 800px) {
-  .info-content-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
+/* ==========================================
+   ORDER / FOOTER / ANIMATIONS
+   ========================================== */
+.order { padding: 7rem 2.5rem; background: var(--cream); max-width: 700px; margin: 0 auto; }
+.order-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.btn-submit { padding: .85rem 2.5rem; background: var(--caramel); color: var(--white); border: none; border-radius: 50px; cursor: pointer; transition: background var(--transition); }
+.btn-submit:hover { background: var(--brown); }
 
-/* レイアウト全体の調整 */
-.info-content-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin-top: 2rem;
-  align-items: stretch; /* 子要素の高さを自動で揃える */
-}
+.site-footer { padding: 3rem; background: var(--dark); text-align: center; }
+.footer-logo { font-family: var(--font-en); font-size: 1.8rem; color: var(--caramel); }
 
-/* 左側のテーブルを囲むボックス */
-.info-table {
-  width: 100%;
-  height: 100%; /* 親の高さに合わせる */
-  border-collapse: collapse;
-  background: var(--white); /* カレンダーと背景を合わせると統一感が出ます */
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
+.fade-up { opacity: 1; transform: translateY(0); transition: opacity .7s ease, transform .7s ease; }
+.js-ready .fade-up { opacity: 0; transform: translateY(28px); }
+.js-ready .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-/* カレンダーを囲むボックス */
-.calendar-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* 中身を上下に分散させて高さを埋める */
-  height: 100%; /* 親の高さに合わせる */
-  background: var(--white);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media(max-width:900px) {
+  .concept-inner, .wrapping-inner, .info-content-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-table, .calendar-container { height: auto; }
 }
-
-/* テーブル内の余白を少し広げてバランスを取る */
-.info-table th, .info-table td {
-  padding: 1.2rem 1rem; /* パディングを増やしてカレンダーの高さに近づける */
-  border-bottom: 1px solid rgba(200, 151, 106, 0.15);
-}
-
-/* スマホでは高さを揃える必要がないので解除 */
-@media (max-width: 800px) {
-  .info-content-layout {
-    grid-template-columns: 1fr;
-    align-items: flex-start;
-  }
-  .info-table, .calendar-container {
-    height: auto;
-  }
+@media(max-width:600px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .site-header { padding: 0 1.2rem; }
+  .nav { display: none; }
+  .nav-toggle { display: block; }
 }
