@@ -1,39 +1,161 @@
-<section id="news" class="news">
-  <div class="news-inner fade-up">
-    <p class="section-label">— News —</p>
-    <h2>お知らせ</h2>
-    
-    <div class="news-list">
-      <!-- ニュース項目 1 -->
-      <article class="news-item">
-        <div class="news-meta">
-          <time datetime="2026-03-15">2026.03.15</time>
-          <span class="news-tag tag-seasonal">季節限定</span>
-        </div>
-        <h3 class="news-title">春の新作「さくらと苺のマフィン」が登場しました。</h3>
-      </article>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotori – コトリ洋菓子店</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-      <!-- ニュース項目 2 -->
-      <article class="news-item">
-        <div class="news-meta">
-          <time datetime="2026-03-01">2026.03.01</time>
-          <span class="news-tag tag-info">お知らせ</span>
-        </div>
-        <h3 class="news-title">ホワイトデー限定ギフトセットのご予約受付を開始しました。</h3>
-      </article>
-
-      <!-- ニュース項目 3 -->
-      <article class="news-item">
-        <div class="news-meta">
-          <time datetime="2026-02-20">2026.02.20</time>
-          <span class="news-tag tag-media">メディア</span>
-        </div>
-        <h3 class="news-title">雑誌「ことり日和」の「街の素敵な洋菓子店」特集に掲載されました。</h3>
-      </article>
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-en">Kotori</span>
+        <span class="logo-ja">コトリ洋菓子店</span>
+      </div>
+      <nav class="nav" id="mainNav">
+        <a href="#concept">コンセプト</a>
+        <a href="#news">お知らせ</a>
+        <a href="#products">商品一覧</a>
+        <a href="#info">店舗情報</a>
+        <a href="#order">ご注文</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">☰</button>
     </div>
+  </header>
 
-    <div class="news-more">
-      <a href="#" class="btn-more">過去のお知らせを見る</a>
-    </div>
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">✕</button>
+    <nav class="mobile-nav">
+      <a href="#concept">コンセプト</a>
+      <a href="#news">お知らせ</a>
+      <a href="#products">商品一覧</a>
+      <a href="#info">店舗情報</a>
+      <a href="#order">ご注文</a>
+    </nav>
   </div>
-</section>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-sub">小さな幸せを、ひとつひとつ丁寧に。</p>
+      <h1 class="hero-title">Kotori<br /><span>コトリ洋菓子店</span></h1>
+      <a href="#products" class="btn-hero">商品を見る</a>
+    </div>
+    <div class="hero-scroll">scroll ↓</div>
+  </section>
+
+  <section id="concept" class="concept">
+    <div class="concept-inner">
+      <div class="concept-text fade-up">
+        <p class="section-label">— About Kotori —</p>
+        <h2>小鳥が運ぶ<br />やさしい甘さ</h2>
+        <p class="body-text">
+          コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br />
+          バターの香り、しっとりとした生地、ひとくちの幸せ。<br />
+          大切な人への贈り物に、自分へのご褒美に、どうぞ。
+        </p>
+      </div>
+      <div class="concept-deco fade-up">
+        <div class="deco-circle"></div>
+        <div class="deco-ring"></div>
+        <span class="deco-text">since 2020</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- お知らせセクション -->
+  <section id="news" class="news">
+    <div class="news-inner fade-up">
+      <p class="section-label">— News —</p>
+      <h2>お知らせ</h2>
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-meta">
+            <time>2026.03.15</time>
+            <span class="news-tag tag-seasonal">季節限定</span>
+          </div>
+          <h3 class="news-title">春の新作「さくらと苺のマフィン」が登場しました。</h3>
+        </article>
+        <article class="news-item">
+          <div class="news-meta">
+            <time>2026.03.01</time>
+            <span class="news-tag tag-info">お知らせ</span>
+          </div>
+          <h3 class="news-title">ホワイトデー限定ギフトセットのご予約受付を開始しました。</h3>
+        </article>
+        <article class="news-item">
+          <div class="news-meta">
+            <time>2026.02.20</time>
+            <span class="news-tag tag-media">メディア</span>
+          </div>
+          <h3 class="news-title">雑誌「ことり日和」の特集に掲載されました。</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <div class="products-header fade-up">
+      <p class="section-label">— Our Products —</p>
+      <h2>商品一覧</h2>
+    </div>
+    <div class="products-grid" id="products-list"></div>
+  </section>
+
+  <section id="info" class="info">
+    <div class="info-inner fade-up">
+      <p class="section-label">— Shop Info —</p>
+      <h2>店舗情報</h2>
+      <div class="info-content-layout">
+        <table class="info-table">
+          <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
+          <tr><th>住所</th><td>〒028-×××× 岩手県遠野市○○町1-2-3</td></tr>
+          <tr><th>営業時間</th><td>10:00 – 18:00</td></tr>
+          <tr><th>定休日</th><td>毎週水曜日<br><small style="color:var(--gray)">（祝日の場合は翌木曜日）</small></td></tr>
+          <tr><th>電話</th><td>0198-××××-××××</td></tr>
+          <tr><th>Instagram</th><td>@kotori_patisserie</td></tr>
+        </table>
+
+        <div class="calendar-container">
+          <div class="calendar-main">
+            <div class="calendar-header"><span id="calendar-month">2026年 3月</span></div>
+            <div class="calendar-weekdays">
+              <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+            </div>
+            <div id="calendar-days" class="calendar-days"></div>
+          </div>
+          <div class="calendar-footer-text">
+            <p><strong>営業時間：10:00 - 18:00</strong></p>
+            <p>定休日：毎週水曜日（祝日の場合は翌木曜日）</p>
+            <p class="calendar-note">※ <span class="closed-label">■</span> は定休日です</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order" class="order fade-up">
+    <p class="section-label">— Online Order —</p>
+    <h2>ご注文</h2>
+    <form class="order-form" id="orderForm">
+      <div class="form-row"><label>お名前 <span>*</span></label><input type="text" required></div>
+      <div class="form-row"><label>メールアドレス <span>*</span></label><input type="email" required></div>
+      <button type="submit" class="btn-submit">送信する</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p class="footer-logo">Kotori</p>
+    <p class="footer-copy">© 2026 コトリ洋菓子店. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
