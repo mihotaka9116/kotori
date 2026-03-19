@@ -98,10 +98,13 @@
     </div>
   </section>
 
-  <section id="info" class="info">
-    <div class="info-inner fade-up">
-      <p class="section-label">— Shop Info —</p>
-      <h2>店舗情報</h2>
+ <!-- 店舗情報セクションの中に追記 -->
+<section id="info" class="info">
+  <div class="info-inner fade-up">
+    <p class="section-label">— Shop Info —</p>
+    <h2>店舗情報</h2>
+    
+    <div class="info-content-layout"> <!-- レイアウト用のクラスを追加 -->
       <table class="info-table">
         <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
         <tr><th>住所</th><td>〒028-×××× 岩手県遠野市○○町1-2-3</td></tr>
@@ -109,8 +112,23 @@
         <tr><th>電話</th><td>0198-××××-××××</td></tr>
         <tr><th>Instagram</th><td>@kotori_patisserie</td></tr>
       </table>
+
+      <!-- ここからカレンダー -->
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <span id="calendar-month">2026年 3月</span>
+        </div>
+        <div class="calendar-weekdays">
+          <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+        </div>
+        <div id="calendar-days" class="calendar-days">
+          <!-- JSで生成 -->
+        </div>
+        <p class="calendar-note">※ <span class="closed-label">■</span> は定休日（毎週水曜）です</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="order" class="order fade-up">
     <p class="section-label">— Online Order —</p>
