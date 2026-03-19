@@ -129,4 +129,47 @@ img{display:block;width:100%;object-fit:cover;}
   .nav-toggle{display:block;}
   .products-grid{grid-template-columns:1fr;}
   .hero,.concept,.products,.wrapping,.info,.order{padding-left:1.2rem;padding-right:1.2rem;}
+
+
+}
+
+/* --- 追加セクションの共通設定 --- */
+.news, .patissier, .instagram { padding: 7rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+/* NEWS */
+.news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.view-all { font-size: 0.8rem; color: var(--caramel); letter-spacing: 0.1em; }
+.news-item { display: flex; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(200,151,106,0.2); transition: 0.3s; }
+.news-item:hover { padding-left: 10px; color: var(--caramel); }
+.news-date { font-family: var(--font-en); width: 100px; color: var(--gray); }
+.news-cat { font-size: 0.7rem; background: var(--warm); padding: 2px 8px; border-radius: 4px; color: var(--caramel); }
+
+/* PATISSIER */
+.patissier-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.patissier-img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.signature { margin-top: 2rem; }
+.signature .name { font-size: 1.5rem; border-top: 1px solid var(--caramel); display: inline-block; padding-top: 0.5rem; }
+
+/* CALENDAR */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; }
+.calendar-card { background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); }
+.calendar-header { display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-family: var(--font-en); }
+.calendar-grid { display: grid; grid-cols: 7; display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 5px; }
+.calendar-day-head { font-size: 0.7rem; color: var(--gray); padding-bottom: 10px; }
+.calendar-date { padding: 8px 0; font-size: 0.9rem; font-family: var(--font-en); border-radius: 50%; }
+.is-holiday { background: var(--caramel); color: white; }
+
+/* INSTAGRAM */
+.insta-header { text-align: center; margin-bottom: 3rem; }
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.insta-img { aspect-ratio: 1/1; overflow: hidden; border-radius: 8px; }
+.insta-img img { transition: 0.5s; }
+.insta-img:hover img { transform: scale(1.1); }
+
+/* ファイル添付入力 */
+input[type="file"] { font-size: 0.8rem; padding: 0.5rem; border: 1px dashed var(--caramel); background: var(--white); }
+
+@media(max-width: 900px) {
+  .patissier-inner, .info-grid { grid-template-columns: 1fr; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
 }
