@@ -130,3 +130,64 @@ img{display:block;width:100%;object-fit:cover;}
   .products-grid{grid-template-columns:1fr;}
   .hero,.concept,.products,.wrapping,.info,.order{padding-left:1.2rem;padding-right:1.2rem;}
 }
+
+/* 店舗情報とカレンダーを横並びにする（PC時） */
+.info-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+/* カレンダー本体 */
+.calendar-container {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.calendar-header {
+  text-align: center;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.calendar-weekdays, .calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+.calendar-weekdays span {
+  font-size: 0.75rem;
+  color: var(--gray);
+  padding-bottom: 0.5rem;
+}
+.calendar-days span {
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  color: var(--dark);
+}
+/* 定休日（水曜）のスタイル */
+.calendar-days span.closed {
+  background: rgba(200, 151, 106, 0.15);
+  color: var(--caramel);
+  border-radius: 4px;
+  font-weight: 600;
+}
+.calendar-note {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 1rem;
+  text-align: center;
+}
+.closed-label { color: var(--caramel); margin-right: 4px; }
+
+/* スマホ対応 */
+@media (max-width: 800px) {
+  .info-content-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
