@@ -1,164 +1,118 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  document.documentElement.classList.add('js-ready');
-
-  // 商品データ
-  const products = [
-    {
-      en: "Butter Cream Muffin",
-      ja: "バタークリームマフィン",
-      price: "¥280",
-      desc: "ふんわり軽い生地に、バターの香りが広がるマフィン。毎朝焼き立てをご用意しています。",
-      img: "maffin.jpg"
-    },
-    {
-      en: "Chocolate Madeleine",
-      ja: "チョコレートマドレーヌ",
-      price: "¥220",
-      desc: "カカオたっぷりのマドレーヌ。しっとりとした食感と濃厚な風味をお楽しみください。",
-      img: "madrane.jpg"
-    },
-    {
-      en: "Bear Madeleine",
-      ja: "くまのマドレーヌ",
-      price: "¥280",
-      desc: "くま型のキュートなマドレーヌ。プレーン・チョコの2種類。贈り物にも大人気です。",
-      img: "bear.jpg"
-    }
-  ];
-
-  const container = document.getElementById('products-list');
-  console.log('container:', container);
-
-  if (container) {
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <div class="product-img">
-          <img src="${p.img}" alt="${p.ja}" loading="lazy">
-        </div>
-        <div class="product-info">
-          <p class="section-label" style="font-size:.7rem;">${p.en}</p>
-          <h3 style="margin-bottom:10px;font-weight:400;">${p.ja}</h3>
-          <p class="body-text" style="font-size:.85rem;margin-bottom:15px;">${p.desc}</p>
-          <p style="color:var(--brown);font-weight:bold;">${p.price}</p>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  } else {
-    console.error('products-list が見つかりません');
-  }
-
-  // ラッピング項目
-  const wrapItems = [
-    'ご注文時にラッピング希望をお選びください',
-    'ギフトボックス（+¥200）もご用意しております',
-    'のし・メッセージカードは無料で承ります'
-  ];
-  const wrapList = document.getElementById('wrapping-notes');
-  if (wrapList) {
-    wrapItems.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      wrapList.appendChild(li);
-    });
-  }
-
-  // ヘッダースクロール
+  // --- 1. スクロール監視（ヘッダーの背景変化） ---
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    if (header) header.classList.toggle('header-scrolled', window.scrollY > 100);
+    if (window.scrollY > 50) {
+      header.classList.add('header-scrolled');
+    } else {
+      header.classList.remove('header-scrolled');
+    }
   });
 
-  // ハンバーガーメニュー
-  const navToggle   = document.getElementById('navToggle');
-  const mobileMenu  = document.getElementById('mobileMenu');
+  // --- 2. モバイルメニューの開閉 ---
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
-  const overlay     = document.getElementById('mobileOverlay');
+  const mobileOverlay = document.getElementById('mobileOverlay');
 
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  const toggleMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    mobileOverlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
 
-  if (navToggle)   navToggle.addEventListener('click', openMenu);
-  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-  if (overlay)     overlay.addEventListener('click', closeMenu);
-  document.querySelectorAll('.mobile-nav a').forEach(a => {
-    a.addEventListener('click', closeMenu);
+  navToggle.addEventListener('click', () => toggleMenu(true));
+  mobileClose.addEventListener('click', () => toggleMenu(false));
+  mobileOverlay.addEventListener('click', () => toggleMenu(false));
+
+  // メニューリンククリック時に閉じる
+  const mobileLinks = document.querySelectorAll('.mobile-nav a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
   });
 
-  // フェードイン
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  // --- 3. カレンダー生成ロジック ---
+  const generateCalendar = () => {
+    const daysContainer = document.getElementById('calendar-days');
+    const monthLabel = document.getElementById('calendar-month');
+    
+    // 現在の日時（2026年3月を想定。動的にする場合は new Date()）
+    const year = 2026;
+    const month = 2; // JavaScriptは0始まり（2 = 3月）
+    
+    monthLabel.textContent = `${year}年 ${month + 1}月`;
 
-  // 注文フォーム
-  const orderForm = document.getElementById('orderForm');
-  const formMsg   = document.getElementById('formMsg');
-  if (orderForm && formMsg) {
-    orderForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const name  = orderForm.querySelector('[name="name"]').value.trim();
-      const email = orderForm.querySelector('[name="email"]').value.trim();
-      if (!name || !email) {
-        formMsg.textContent = 'お名前とメールアドレスは必須です。';
-        formMsg.style.color = '#c0392b';
-        return;
-      }
-      formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
-      formMsg.style.color = '';
-      orderForm.reset();
-    });
-  }
-});
-
-// --- カレンダー生成機能 ---
-  const calDays = document.getElementById('calendar-days');
-  const calMonth = document.getElementById('calendar-month');
-
-  if (calDays && calMonth) {
-    const now = new Date(); // 2026年の今日
-    const year = now.getFullYear();
-    const month = now.getMonth(); // 0-11
-
-    // 表示を更新 (例: 2026年 3月)
-    calMonth.textContent = `${year}年 ${month + 1}月`;
-
-    // 月の最初の日と最後の日を取得
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
-    // 空白を埋める
+    // 祝日による振替定休日の設定（手動設定用）
+    // 例：3月20日（金）が祝日の場合、本来の水曜定休を木曜にずらす等の調整が必要な場合に使用
+    const specialClosedDays = []; 
+
+    // 空白を埋める（月初の曜日合わせ）
     for (let i = 0; i < firstDay; i++) {
-      calDays.appendChild(document.createElement('span'));
+      const emptySpan = document.createElement('span');
+      daysContainer.appendChild(emptySpan);
     }
 
-    // 日付を入れる
+    // 日付を生成
     for (let date = 1; date <= lastDate; date++) {
       const span = document.createElement('span');
       span.textContent = date;
       
-      // 水曜日 (getDay() === 3) を定休日に設定
       const dayOfWeek = new Date(year, month, date).getDay();
-      if (dayOfWeek === 3) {
+
+      // 定休日判定：毎週水曜日 (dayOfWeek === 3) 
+      // または specialClosedDays に含まれる日
+      if (dayOfWeek === 3 || specialClosedDays.includes(date)) {
         span.classList.add('closed');
       }
-      
-      calDays.appendChild(span);
+
+      daysContainer.appendChild(span);
     }
+  };
+
+  generateCalendar();
+
+  // --- 4. フェードインアニメーション（Intersection Observer） ---
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  const fadeElements = document.querySelectorAll('.fade-up');
+  fadeElements.forEach(el => observer.observe(el));
+
+  // 初期化時にJS準備完了クラスを付与
+  document.body.classList.add('js-ready');
+
+  // --- 5. お問い合わせフォームの簡易送信シミュレーション ---
+  const orderForm = document.getElementById('orderForm');
+  if (orderForm) {
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = orderForm.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      
+      btn.textContent = '送信中...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        alert('お問い合わせありがとうございます。送信が完了しました。');
+        btn.textContent = originalText;
+        btn.style.opacity = '1';
+        btn.disabled = false;
+        orderForm.reset();
+      }, 1500);
+    });
   }
+});
