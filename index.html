@@ -1,211 +1,165 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kotori – コトリ洋菓子店 | 小さな幸せを、ひとつひとつ丁寧に。</title>
-  
- 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotori – コトリ洋菓子店</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="site-header" id="siteHeader">
+  <header class="site-header" id="header">
     <div class="header-inner">
       <div class="logo">
         <span class="logo-en">Kotori</span>
         <span class="logo-ja">コトリ洋菓子店</span>
       </div>
-      
       <nav class="nav" id="mainNav">
-        <button class="nav-close" id="navClose">✕</button>
-        <div class="nav-links">
-          <a href="#news">お知らせ</a>
-          <a href="#concept">コンセプト</a>
-          <a href="#patissier">パティシエ</a>
-          <a href="#products">商品一覧</a>
-          <a href="#access">アクセス</a>
-          <a href="#calendar">カレンダー</a>
-          <a href="#order" class="nav-cta">ご注文</a>
-        </div>
+        <a href="#concept">コンセプト</a>
+        <a href="#products">商品一覧</a>
+        <a href="#wrapping">ラッピング</a>
+        <a href="#info">店舗情報</a>
+        <a href="#order">ご注文</a>
       </nav>
-      
-      <button class="nav-toggle" id="navToggle">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">☰</button>
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <p class="hero-sub js-reveal">小さな幸せを、ひとつひとつ丁寧に。</p>
-        <h1 class="hero-title js-reveal">Kotori<br><span>コトリ洋菓子店</span></h1>
-        <a href="#products" class="btn-hero js-reveal">商品を見る</a>
-      </div>
-      <div class="hero-scroll">scroll</div>
-    </section>
+  <!-- モバイルメニューオーバーレイ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">✕</button>
+    <nav class="mobile-nav">
+      <a href="#concept">コンセプト</a>
+      <a href="#products">商品一覧</a>
+      <a href="#wrapping">ラッピング</a>
+      <a href="#info">店舗情報</a>
+      <a href="#order">ご注文</a>
+    </nav>
+  </div>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-    <!-- News -->
-    <section id="news" class="news section-padding bg-white">
-      <div class="container">
-        <div class="news-header js-reveal">
-          <div>
-            <p class="section-label">— News & Topics —</p>
-            <h2>お知らせ</h2>
-          </div>
-          <a href="#" class="view-all">VIEW ALL →</a>
-        </div>
-        <div class="news-list">
-          <div class="news-item js-reveal">
-            <div class="news-meta">
-              <span class="date">2026.03.15</span>
-              <span class="category">季節限定</span>
-            </div>
-            <h3 class="news-title">春の新作「さくらと苺のマフィン」が登場しました。</h3>
-          </div>
-          <div class="news-item js-reveal">
-            <div class="news-meta">
-              <span class="date">2026.03.01</span>
-              <span class="category">お知らせ</span>
-            </div>
-            <h3 class="news-title">ホワイトデー限定ギフトセットのご予約受付を開始しました。</h3>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-sub">小さな幸せを、ひとつひとつ丁寧に。</p>
+      <h1 class="hero-title">Kotori<br /><span>コトリ洋菓子店</span></h1>
+      <a href="#products" class="btn-hero">商品を見る</a>
+    </div>
+    <div class="hero-scroll">scroll ↓</div>
+  </section>
 
-    <!-- Concept -->
-    <section id="concept" class="concept section-padding">
-      <div class="container concept-inner">
-        <div class="concept-text js-reveal">
-          <p class="section-label">— About Kotori —</p>
-          <h2>小鳥が運ぶ<br>やさしい甘さ</h2>
-          <p class="body-text">
-            コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br>
-            バターの香り、しっとりとした生地、ひとくちの幸せ。<br>
-            大切な人への贈り物に、自分へのご褒美に、どうぞ。
-          </p>
-        </div>
-        <div class="concept-deco js-reveal">
-          <div class="deco-circle"></div>
-          <div class="deco-ring"></div>
-          <span class="deco-text">since 2020</span>
-        </div>
+  <section id="concept" class="concept">
+    <div class="concept-inner">
+      <div class="concept-text fade-up">
+        <p class="section-label">— About Kotori —</p>
+        <h2>小鳥が運ぶ<br />やさしい甘さ</h2>
+        <p class="body-text">
+          コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br />
+          バターの香り、しっとりとした生地、ひとくちの幸せ。<br />
+          大切な人への贈り物に、自分へのご褒美に、どうぞ。
+        </p>
       </div>
-    </section>
+      <div class="concept-deco fade-up">
+        <div class="deco-circle"></div>
+        <div class="deco-ring"></div>
+        <span class="deco-text">since 2020</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- Patissier -->
-    <section id="patissier" class="patissier section-padding bg-white">
-      <div class="container patissier-inner">
-        <div class="patissier-img-wrap js-reveal">
-          <img src="https://images.unsplash.com/photo-1583394293214-28dea15ee548?auto=format&fit=crop&q=80&w=800" alt="パティシエ">
-          <div class="deco-badge">Handmade with Love</div>
-        </div>
-        <div class="patissier-text js-reveal">
-          <p class="section-label">— Patissier —</p>
-          <h2>作り手の想い</h2>
-          <p class="body-text">
-            幼い頃、母と一緒に作ったクッキーの香りが私の原点です。<br>
-            お菓子には、言葉では伝えきれない「ありがとう」や「おめでとう」を運ぶ力があると信じています。
-          </p>
-          <div class="profile">
-            <p class="role">オーナーパティシエ</p>
-            <p class="name">小鳥遊 結衣 <span>Yui Takanashi</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section id="products" class="products">
+    <div class="products-header fade-up">
+      <p class="section-label">— Our Products —</p>
+      <h2>商品一覧</h2>
+    </div>
+   <div class="products-grid" id="products-list"></div>
+  </section>
 
-    <!-- Products -->
-    <section id="products" class="products section-padding bg-light">
-      <div class="container">
-        <div class="section-header js-reveal">
-          <p class="section-label">— Our Products —</p>
-          <h2>商品一覧</h2>
-        </div>
-        <div class="products-grid">
-          <!-- Product 1 -->
-          <div class="product-card js-reveal">
-            <div class="product-img-wrap">
-              <img src="https://picsum.photos/seed/muffin/600/800" alt="バタークリームマフィン">
-            </div>
-            <div class="product-body">
-              <p class="product-en">Butter Cream Muffin</p>
-              <h3 class="product-name">バタークリームマフィン</h3>
-              <p class="product-price">¥280</p>
-              <a href="#order" class="btn-order">注文する</a>
-            </div>
-          </div>
-          <!-- Product 2 -->
-          <div class="product-card js-reveal">
-            <div class="product-img-wrap">
-              <img src="https://picsum.photos/seed/madeleine/600/800" alt="チョコレートマドレーヌ">
-            </div>
-            <div class="product-body">
-              <p class="product-en">Chocolate Madeleine</p>
-              <h3 class="product-name">チョコレートマドレーヌ</h3>
-              <p class="product-price">¥250</p>
-              <a href="#order" class="btn-order">注文する</a>
-            </div>
-          </div>
-        </div>
+  <section id="wrapping" class="wrapping">
+    <div class="wrapping-inner fade-up">
+      <div class="wrapping-text">
+        <p class="section-label">— Gift Wrapping —</p>
+        <h2>ラッピングについて</h2>
+        <p class="body-text">
+          コトリでは、焼き菓子をオリジナルのギフトボックスでお届けします。<br/>
+          カラフルな花々と小鳥のイラストをあしらった、コトリ特製パッケージ。<br/><br/>
+          大切な人へのプレゼントはもちろん、自分へのご褒美にもぴったりな、<br/>
+          華やかな贈り物として喜ばれています。
+        </p>
+        <ul class="wrapping-notes" id="wrapping-notes"></ul>
       </div>
-    </section>
+      <div class="wrapping-img-wrap">
+        <img src="flower.jpg" alt="コトリオリジナルギフトボックス" class="wrapping-img" />
+　　　　<span class="wrapping-caption">コトリオリジナルギフトボックス</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq section-padding bg-warm">
-      <div class="container">
-        <div class="section-header js-reveal">
-          <p class="section-label">— Q&A —</p>
-          <h2>よくあるご質問</h2>
-        </div>
-        <div class="faq-list">
-          <div class="faq-item js-reveal">
-            <button class="faq-question">
-              <span><span class="q-mark">Q.</span> 賞味期限はどのくらいですか？</span>
-              <span class="icon">▼</span>
-            </button>
-            <div class="faq-answer">
-              <p><span class="a-mark">A.</span> 商品によって異なりますが、焼き菓子は製造から約2週間、生菓子は当日中にお召し上がりいただくようお願いしております。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section id="info" class="info">
+    <div class="info-inner fade-up">
+      <p class="section-label">— Shop Info —</p>
+      <h2>店舗情報</h2>
+      <table class="info-table">
+        <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
+        <tr><th>住所</th><td>〒028-×××× 岩手県遠野市○○町1-2-3</td></tr>
+        <tr><th>営業時間</th><td>10:00 – 18:00（水曜定休）</td></tr>
+        <tr><th>電話</th><td>0198-××××-××××</td></tr>
+        <tr><th>Instagram</th><td>@kotori_patisserie</td></tr>
+      </table>
+    </div>
+  </section>
 
-    <!-- Order -->
-    <section id="order" class="order section-padding">
-      <div class="container">
-        <div class="js-reveal">
-          <p class="section-label">— Online Order —</p>
-          <h2>ご注文</h2>
-          <form class="order-form">
-            <div class="form-row">
-              <label>お名前 <span>*</span></label>
-              <input type="text" required placeholder="山田 花子">
-            </div>
-            <div class="form-row">
-              <label>メールアドレス <span>*</span></label>
-              <input type="email" required placeholder="example@email.com">
-            </div>
-            <button type="submit" class="btn-submit">送信する</button>
-          </form>
-        </div>
+  <section id="order" class="order fade-up">
+    <p class="section-label">— Online Order —</p>
+    <h2>ご注文</h2>
+    <p class="body-text">オンラインでのご注文はフォームよりお承りしております。</p>
+    <form class="order-form" id="orderForm" novalidate>
+      <div class="form-row">
+        <label>お名前 <span>*</span></label>
+        <input type="text" name="name" placeholder="山田 花子" required />
       </div>
-    </section>
-  </main>
+      <div class="form-row">
+        <label>メールアドレス <span>*</span></label>
+        <input type="email" name="email" placeholder="example@email.com" required />
+      </div>
+      <div class="form-row">
+        <label>ご希望商品</label>
+        <select name="product">
+          <option value="">選択してください</option>
+          <option>バタークリームマフィン</option>
+          <option>チョコレートマドレーヌ</option>
+          <option>くまのマドレーヌ</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>ラッピング</label>
+        <select name="wrapping">
+          <option value="none">ラッピングなし</option>
+          <option value="paper">包装紙ラッピング（無料）</option>
+          <option value="box">ギフトボックス（+¥200）</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>メッセージカード</label>
+        <input type="text" name="message_card" placeholder="メッセージを入力（無料）" />
+      </div>
+      <div class="form-row">
+        <label>その他ご要望</label>
+        <textarea name="message" rows="4" placeholder="ご要望など"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">送信する</button>
+      <p class="form-msg" id="formMsg"></p>
+    </form>
+  </section>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Kotori Patisserie. All Rights Reserved.</p>
+    <p class="footer-logo">Kotori</p>
+    <p class="footer-copy">© 2025 コトリ洋菓子店. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+ <script src="script.js"></script>
 </body>
 </html>
