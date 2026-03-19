@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+  // 初期設定：JS読み込み完了フラグ
   document.documentElement.classList.add('js-ready');
 
-  // 商品データ
+  /* ==========================================
+     1. 商品データの生成
+     ========================================== */
   const products = [
     {
       en: "Butter Cream Muffin",
@@ -28,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const container = document.getElementById('products-list');
-  console.log('container:', container);
-
   if (container) {
     products.forEach(p => {
       const card = document.createElement('div');
@@ -47,25 +47,58 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       container.appendChild(card);
     });
-  } else {
-    console.error('products-list が見つかりません');
   }
 
-  // ラッピング項目
-  const wrapItems = [
-    'ご注文時にラッピング希望をお選びください',
-    'ギフトボックス（+¥200）もご用意しております',
-    'のし・メッセージカードは無料で承ります'
+  /* ==========================================
+     2. お知らせ (News) の挿入
+     ========================================== */
+  const newsData = [
+    { date: '2026.03.15', cat: '季節限定', title: '春の新作「さくらと苺のマフィン」が登場しました。' },
+    { date: '2026.03.01', cat: 'お知らせ', title: 'ホワイトデー限定ギフトセットのご予約受付開始。' }
   ];
-  const wrapList = document.getElementById('wrapping-notes');
-  if (wrapList) {
-    wrapItems.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      wrapList.appendChild(li);
+  const newsList = document.getElementById('news-list');
+  if (newsList) {
+    newsData.forEach(item => {
+      newsList.innerHTML += `
+        <div class="news-item">
+          <span class="news-date">${item.date}</span>
+          <span class="news-cat">${item.cat}</span>
+          <span class="news-title">${item.title}</span>
+        </div>`;
     });
   }
 
+  /* ==========================================
+     3. カレンダー生成 (2026年3月)
+     ========================================== */
+  const calGrid = document.getElementById('calendar-grid');
+  const days = ['日','月','火','水','木','金','土'];
+  const holidays = [2, 9, 16, 23, 30]; // 月曜定休
+
+  if (calGrid) {
+    days.forEach(d => calGrid.innerHTML += `<div class="calendar-day-head">${d}</div>`);
+    for (let i = 1; i <= 31; i++) {
+      const isHoliday = holidays.includes(i) ? 'is-holiday' : '';
+      calGrid.innerHTML += `<div class="calendar-date ${isHoliday}">${i}</div>`;
+    }
+  }
+
+  /* ==========================================
+     4. インスタグラム風画像
+     ========================================== */
+  const instaGrid = document.getElementById('insta-grid');
+  if (instaGrid) {
+    for (let i = 1; i <= 8; i++) {
+      instaGrid.innerHTML += `
+        <div class="insta-img">
+          <img src="https://picsum.photos/400/400?random=${i}" alt="instagram" loading="lazy">
+        </div>`;
+    }
+  }
+
+  /* ==========================================
+     5. ナビゲーション・UI制御
+     ========================================== */
   // ヘッダースクロール
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
@@ -78,25 +111,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileClose = document.getElementById('mobileClose');
   const overlay     = document.getElementById('mobileOverlay');
 
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  const toggleMenu = (isOpen) => {
+    mobileMenu?.classList.toggle('open', isOpen);
+    overlay?.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
 
-  if (navToggle)   navToggle.addEventListener('click', openMenu);
-  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-  if (overlay)     overlay.addEventListener('click', closeMenu);
+  navToggle?.addEventListener('click', () => toggleMenu(true));
+  mobileClose?.addEventListener('click', () => toggleMenu(false));
+  overlay?.addEventListener('click', () => toggleMenu(false));
   document.querySelectorAll('.mobile-nav a').forEach(a => {
-    a.addEventListener('click', closeMenu);
+    a.addEventListener('click', () => toggleMenu(false));
   });
 
-  // フェードイン
+  // スクロールフェードインアニメーション
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -107,22 +135,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // 注文フォーム
+  /* ==========================================
+     6. 注文フォーム（ファイル添付対応）
+     ========================================== */
   const orderForm = document.getElementById('orderForm');
   const formMsg   = document.getElementById('formMsg');
-  if (orderForm && formMsg) {
-    orderForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const name  = orderForm.querySelector('[name="name"]').value.trim();
-      const email = orderForm.querySelector('[name="email"]').value.trim();
-      if (!name || !email) {
-        formMsg.textContent = 'お名前とメールアドレスは必須です。';
-        formMsg.style.color = '#c0392b';
-        return;
-      }
-      formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
-      formMsg.style.color = '';
-      orderForm.reset();
-    });
-  }
+
+  orderForm?.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    // FormDataを使用してファイルを含む全データを取得
+    const formData = new FormData(orderForm);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const file = formData.get('attachment');
+
+    if (!name || !email) {
+      formMsg.textContent = 'お名前とメールアドレスは必須です。';
+      formMsg.style.color = '#c0392b';
+      return;
+    }
+
+    // 送信シミュレーション
+    console.log('送信データ:', Object.fromEntries(formData));
+    if (file && file.size > 0) console.log('添付ファイル受領:', file.name);
+
+    formMsg.textContent = 'ご注文ありがとうございます！確認メールをお送りします。';
+    formMsg.style.color = 'var(--caramel)';
+    orderForm.reset();
+  });
 });
