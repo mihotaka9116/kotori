@@ -191,3 +191,52 @@ img{display:block;width:100%;object-fit:cover;}
     gap: 2rem;
   }
 }
+
+/* レイアウト全体の調整 */
+.info-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: stretch; /* 子要素の高さを自動で揃える */
+}
+
+/* 左側のテーブルを囲むボックス */
+.info-table {
+  width: 100%;
+  height: 100%; /* 親の高さに合わせる */
+  border-collapse: collapse;
+  background: var(--white); /* カレンダーと背景を合わせると統一感が出ます */
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* カレンダーを囲むボックス */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 中身を上下に分散させて高さを埋める */
+  height: 100%; /* 親の高さに合わせる */
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* テーブル内の余白を少し広げてバランスを取る */
+.info-table th, .info-table td {
+  padding: 1.2rem 1rem; /* パディングを増やしてカレンダーの高さに近づける */
+  border-bottom: 1px solid rgba(200, 151, 106, 0.15);
+}
+
+/* スマホでは高さを揃える必要がないので解除 */
+@media (max-width: 800px) {
+  .info-content-layout {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+  .info-table, .calendar-container {
+    height: auto;
+  }
+}
