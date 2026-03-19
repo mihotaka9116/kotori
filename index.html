@@ -4,10 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kotori – コトリ洋菓子店</title>
+  <!-- Tailwind CSS CDN (v3系を使用することで動作を安定させます) -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css" />
+  <script>
+    // Tailwindのカスタム設定を適用
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#faf7f2',
+            warm: '#f5ede0',
+            caramel: '#c8976a',
+            brown: '#7a4f2d',
+            dark: '#2c1a0e',
+            gray: '#9b8b7d',
+          },
+          fontFamily: {
+            en: ['"Cormorant Garamond"', 'serif'],
+            ja: ['"Noto Serif JP"', 'serif'],
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-cream">
+<body class="bg-cream text-dark font-ja">
 
+  <!-- ヘッダー -->
   <header class="site-header" id="header">
     <div class="header-inner">
       <div class="logo">
@@ -18,149 +45,59 @@
         <a href="#concept">コンセプト</a>
         <a href="#news">お知らせ</a>
         <a href="#products">商品一覧</a>
-        <a href="#patissier">想い</a>
-        <a href="#info">店舗情報</a>
-        <a href="#order" class="nav-cta">ご注文</a>
+        <a href="#info">アクセス</a>
+        <a href="#order" class="nav-cta text-white px-6 py-2 bg-caramel rounded-full">ご注文</a>
       </nav>
-      <button class="nav-toggle" id="navToggle">
-        <span></span><span></span><span></span>
-      </button>
+      <!-- スマホ用ハンバーガー -->
+      <div class="md:hidden flex flex-col gap-1.5 w-8 items-end" id="navToggle">
+        <span class="block w-full h-[1px] bg-brown"></span>
+        <span class="block w-3/4 h-[1px] bg-brown"></span>
+        <span class="block w-1/2 h-[1px] bg-brown"></span>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <p class="hero-sub">小さな幸せを、ひとつひとつ丁寧に。</p>
-        <h1 class="hero-title">Kotori<br /><span>コトリ洋菓子店</span></h1>
-        <a href="#products" class="btn-hero">商品を見る</a>
-      </div>
-      <div class="hero-scroll">scroll ↓</div>
-    </section>
-
-    <!-- CONCEPT -->
-    <section id="concept" class="concept fade-up">
-      <div class="concept-inner">
-        <div class="concept-text">
-          <p class="section-label">— About Kotori —</p>
-          <h2>小鳥が運ぶ<br />やさしい甘さ</h2>
-          <p class="body-text">コトリは、素材の味を大切にした手作り焼き菓子の専門店です。<br>バターの香り、しっとりとした生地、ひとくちの幸せをどうぞ。</p>
-        </div>
-        <div class="concept-deco">
-          <div class="deco-circle"></div>
-          <div class="deco-ring"></div>
-          <span class="deco-text">since 2020</span>
-        </div>
+    <!-- HERO (フルスクリーン) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-warm">
+      <div class="hero-bg absolute inset-0 opacity-30"></div>
+      <div class="relative z-10 text-center px-6">
+        <p class="font-ja text-caramel tracking-[0.3em] mb-4">小さな幸せを、ひとつひとつ丁寧に。</p>
+        <h1 class="font-en text-7xl md:text-9xl text-brown leading-none">Kotori</h1>
+        <p class="font-ja text-xl text-caramel tracking-[0.4em] mt-2">コトリ洋菓子店</p>
+        <a href="#products" class="btn-hero inline-block mt-10 px-10 py-3 border border-caramel text-brown rounded-full hover:bg-caramel hover:text-white transition-all">商品を見る</a>
       </div>
     </section>
 
-    <!-- NEWS -->
-    <section id="news" class="section-padding bg-white fade-up px-10">
-      <div class="container">
-        <div class="flex justify-between items-end mb-12">
-          <div>
-            <p class="section-label">— News & Topics —</p>
-            <h2 class="font-ja text-[clamp(1.6rem,3vw,2.2rem)] text-dark">お知らせ</h2>
-          </div>
-          <a href="#" class="text-caramel text-sm tracking-widest">VIEW ALL →</a>
-        </div>
-        <div id="news-list" class="flex flex-col border-t border-caramel/10"></div>
+    <!-- 各セクションのコンテナを共通化 -->
+    <section id="products" class="py-20 px-6 max-w-[1100px] mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-en text-caramel tracking-widest">— Our Products —</p>
+        <h2 class="text-3xl font-ja">商品一覧</h2>
+      </div>
+      <div id="products-list" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- JSで挿入 -->
       </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section id="products" class="products fade-up">
-      <div class="products-header">
-        <p class="section-label">— Our Products —</p>
-        <h2>商品一覧</h2>
-      </div>
-      <div class="products-grid" id="products-list"></div>
-    </section>
-
-    <!-- PATISSIER -->
-    <section id="patissier" class="section-padding bg-white fade-up px-10">
-      <div class="concept-inner">
-        <div class="rounded-custom overflow-hidden shadow-custom">
-          <img src="https://images.unsplash.com/photo-1583394293214-28dea15ee548?auto=format&fit=crop&q=80&w=800" alt="パティシエ" class="w-full h-full object-cover">
-        </div>
+    <!-- INFO & CALENDAR-->
+    <section id="info" class="py-20 bg-warm px-6">
+      <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div>
-          <p class="section-label">— Patissier —</p>
-          <h2 class="font-ja text-[clamp(1.6rem,3vw,2.2rem)] text-dark mb-6">作り手の想い</h2>
-          <p class="body-text mb-8">厳選した北海道産のバターや、地元の新鮮な卵を使用し、心に寄り添うやさしい甘さを目指しています。</p>
-          <div class="border-t border-caramel/20 pt-4">
-            <p class="text-sm text-caramel">オーナーパティシエ</p>
-            <p class="text-xl font-ja">小鳥遊 結衣 <span class="font-en text-sm ml-2">Yui Takanashi</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INFO & CALENDAR -->
-    <section id="info" class="info fade-up">
-      <div class="container grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div>
-          <p class="section-label">— Shop Info —</p>
-          <h2>店舗情報 & アクセス</h2>
-          <table class="info-table mb-8">
-            <tr><th>店名</th><td>コトリ洋菓子店</td></tr>
-            <tr><th>住所</th><td>〒028-0000 岩手県遠野市○○町1-2-3</td></tr>
-            <tr><th>営業時間</th><td>10:00 – 18:00（水曜定休）</td></tr>
+          <h2 class="text-3xl font-ja mb-8">店舗情報</h2>
+          <table class="w-full text-left border-collapse">
+            <tr class="border-b border-caramel/20"><th class="py-4 font-normal text-caramel w-32">住所</th><td class="py-4">岩手県遠野市...</td></tr>
+            <tr class="border-b border-caramel/20"><th class="py-4 font-normal text-caramel">営業時間</th><td class="py-4">10:00 - 18:00</td></tr>
           </table>
-          <a href="https://maps.google.com" target="_blank" class="btn-order">GOOGLE MAPで見る</a>
         </div>
-        <div class="bg-white p-8 rounded-custom shadow-custom">
-          <div class="flex justify-between font-en mb-6">
-            <span class="text-xl text-brown">2026.03</span>
-            <span class="text-caramel text-xs">● 定休日</span>
+        <div class="bg-white p-8 rounded-custom shadow-lg">
+          <div id="calendar-grid" class="grid grid-cols-7 gap-2">
+            <!-- JSで挿入 -->
           </div>
-          <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center"></div>
         </div>
       </div>
-    </section>
-
-    <!-- INSTAGRAM -->
-    <section id="instagram" class="section-padding bg-cream fade-up px-10">
-      <div class="container text-center">
-        <p class="section-label">— Instagram —</p>
-        <h2 class="font-ja text-[clamp(1.6rem,3vw,2.2rem)] mb-2">インスタグラム</h2>
-        <p class="text-caramel font-en mb-10">@kotori_patisserie</p>
-        <div id="insta-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
-      </div>
-    </section>
-
-    <!-- ORDER -->
-    <section id="order" class="order fade-up">
-      <p class="section-label">— Online Order —</p>
-      <h2>ご注文</h2>
-      <form class="order-form" id="orderForm">
-        <div class="form-row">
-          <label>お名前 <span>*</span></label>
-          <input type="text" name="name" required placeholder="山田 花子">
-        </div>
-        <div class="form-row">
-          <label>メールアドレス <span>*</span></label>
-          <input type="email" name="email" required placeholder="example@email.com">
-        </div>
-        <div class="form-row">
-          <label>参考ファイル（画像など）</label>
-          <input type="file" name="attachment" accept="image/*">
-        </div>
-        <div class="form-row">
-          <label>メッセージ</label>
-          <textarea name="message" rows="4" placeholder="ご要望など"></textarea>
-        </div>
-        <button type="submit" class="btn-hero border-none cursor-pointer w-full md:w-auto">送信する</button>
-        <p id="formMsg" class="mt-4 text-center text-caramel"></p>
-      </form>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <p class="footer-logo">Kotori</p>
-    <p class="footer-copy">© 2026 コトリ洋菓子店. All rights reserved.</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
